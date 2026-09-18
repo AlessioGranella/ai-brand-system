@@ -279,22 +279,23 @@ em{font-style:normal;color:var(--rust)}
 <script>
 (function(){
   var form=document.getElementById('wpform'), card=document.getElementById('card'),
-      err=document.getElementById('err'), dl=document.getElementById('dl'), chi=document.getElementById('chi');
+      err=document.getElementById('err'), btn=form.querySelector('button[type=submit]'), chi=document.getElementById('chi');
 
   /* ─────────────────────────────────────────────────────────────────────────
-     DOVE ARRIVANO LE EMAIL
-     Una pagina statica non può spedire email da sola: serve un servizio che
-     le inoltri. Con Formspree (gratuito per questi volumi):
-       1. vai su formspree.io, registrati con info@alessiogranella.com
-       2. crea un nuovo form e copia il suo ID (una stringa tipo "xkgabcde")
-       3. incollalo qui sotto al posto di INCOLLA_QUI_L_ID
-     Da quel momento ogni compilazione ti arriva in posta con nome, cognome,
-     ruolo ed email di chi ha scaricato il documento.
-     Finché il campo resta vuoto la pagina funziona, ma il contatto lo perdi.
+     DOVE ARRIVANO LE COMPILAZIONI
+     Il modulo usa FormSubmit: recapita i dati direttamente a questa casella,
+     senza bisogno di alcun account. La PRIMA volta che qualcuno invia, arriva
+     a info@alessiogranella.com un'email di attivazione: basta cliccare il link
+     una sola volta e da lì in poi ogni compilazione arriva in posta.
      ───────────────────────────────────────────────────────────────────────── */
-  var FORM_ID='';                       // es. 'xkgabcde'
-  var ENDPOINT = FORM_ID ? 'https://formspree.io/f/'+FORM_ID : '';
+  var ENDPOINT='https://formsubmit.co/ajax/info@alessiogranella.com';
   var PDF='../assets/AI-Brand-System-Whitepaper.pdf';
+  var PDF_PUBBLICO='https://aibrandsystem.alessiogranella.com/assets/AI-Brand-System-Whitepaper.pdf';
+
+  function mostraGrazie(nome){
+    chi.textContent=nome;
+    card.classList.add('done');
+  }
 
   form.addEventListener('submit',function(e){
     e.preventDefault();
@@ -308,26 +309,34 @@ em{font-style:normal;color:var(--rust)}
     if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(d.email)){ err.textContent='Controlla l\u2019indirizzo email.'; return; }
     if(!form.privacy.checked){ err.textContent='Serve il consenso per mandarti il documento.'; return; }
 
-    if(ENDPOINT){
-      fetch(ENDPOINT,{
-        method:'POST',
-        headers:{'Content-Type':'application/json','Accept':'application/json'},
-        body:JSON.stringify({
-          _subject:'Whitepaper scaricato — '+d.nome+' '+d.cognome+' ('+d.ruolo+')',
-          _replyto:d.email,
-          Nome:d.nome, Cognome:d.cognome, Ruolo:d.ruolo, Email:d.email,
-          Documento:'AI Brand System — Whitepaper',
-          Pagina:location.href
-        })
-      }).catch(function(){});
-    }
+    btn.disabled=true; btn.textContent='Invio in corso…';
 
-    /* il PDF si apre in una nuova scheda: chiamato dentro il gesto dell'utente,
-       così il blocco popup non scatta */
-    window.open(PDF,'_blank','noopener');
+    /* il PDF si apre subito, dentro il gesto dell'utente: se lo aprissimo dopo
+       la risposta del server il blocco popup scatterebbe */
+    var scheda=window.open(PDF,'_blank','noopener');
 
-    chi.textContent=d.nome;
-    card.classList.add('done');
+    fetch(ENDPOINT,{
+      method:'POST',
+      headers:{'Content-Type':'application/json','Accept':'application/json'},
+      body:JSON.stringify({
+        _subject:'Whitepaper scaricato — '+d.nome+' '+d.cognome+' ('+d.ruolo+')',
+        _template:'table',
+        _captcha:'false',
+        _autoresponse:'Ciao '+d.nome+',\n\ngrazie per aver scaricato il whitepaper sull\u2019AI Brand System.\n'
+          +'Se ti serve riaprirlo, lo trovi qui: '+PDF_PUBBLICO+'\n\n'
+          +'Se dopo la lettura ti viene un dubbio sul tuo caso, rispondi pure a questa email: '
+          +'leggo io.\n\nAlessio Granella\nBrand & Graphic Designer\nalessiogranella.com',
+        Nome:d.nome, Cognome:d.cognome, Ruolo:d.ruolo, Email:d.email,
+        Documento:'AI Brand System — Whitepaper',
+        Pagina:location.href
+      })
+    })
+    .then(function(r){ return r.json(); })
+    .then(function(){ mostraGrazie(d.nome); })
+    .catch(function(){
+      /* se l'invio fallisce non blocchiamo la persona: il documento è già aperto */
+      mostraGrazie(d.nome);
+    });
   });
 })();
 </script>
