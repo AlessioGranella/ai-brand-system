@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Scarica il whitepaper — AI Brand System · Alessio Granella</title>
+<meta name="description" content="Diciotto pagine su come si costruisce un brand che l'intelligenza artificiale sa applicare: benefici, le quattro fasi, gli strumenti, cinque errori da evitare e una checklist per capire se serve alla tua azienda.">
+<link rel="icon" type="image/svg+xml" href="../assets/ag-logo-round.svg">
+<style>
+@font-face{font-family:Augustina;src:url('../assets/fonts/AugustinaSlab-Light.otf') format('opentype');font-weight:300;font-style:normal;font-display:swap}
+@font-face{font-family:Augustina;src:url('../assets/fonts/AugustinaSlab-Regular.otf') format('opentype');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:Augustina;src:url('../assets/fonts/AugustinaSlab-Medium.otf') format('opentype');font-weight:500;font-style:normal;font-display:swap}
+@font-face{font-family:Augustina;src:url('../assets/fonts/AugustinaSlab-Italic.otf') format('opentype');font-weight:400;font-style:italic;font-display:swap}
+
+:root{
+  --paper:#f0efee; --soft:#dfdad5; --white:#fff;
+  --ink:#1a2b1e; --rust:#d14124; --muschio:#8faf90;
+  --line:#c8c6c2; --line-dark:#485349; --muted:#5d6a60; --body:#344238;
+  --on-dark:#e4e8e4; --on-dark-mut:#adb8ae;
+  --max:1280px; --gut:32px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:Augustina,Georgia,serif;font-weight:400;font-size:18px;line-height:1.55;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit}
+h1,h2,h3,p,ul,ol{margin-top:0}
+h1,h2,h3{font-weight:300;letter-spacing:-.035em;text-wrap:balance}
+h1{font-size:clamp(2.2rem,3.4vw,3.05rem);line-height:1.04;margin-bottom:0}
+h2{font-size:clamp(2rem,3.6vw,3.3rem);line-height:1.04;margin-bottom:0}
+h3{font-size:1.5rem;line-height:1.14;font-weight:400}
+em{font-style:normal;color:var(--rust)}
+.wrap{max-width:var(--max);margin-inline:auto;padding-inline:var(--gut)}
+.band{padding-block:clamp(66px,8vw,116px)}
+.eyebrow{color:var(--rust);font-size:.72rem;font-weight:500;text-transform:uppercase;letter-spacing:.15em;margin-bottom:0}
+.lead{font-size:1.12rem;color:var(--body);max-width:56ch}
+
+/* nav */
+.nav{background:var(--paper);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:96px;gap:20px}
+.brand{display:flex;align-items:center;gap:13px;text-decoration:none}
+.brand img{width:62px}
+.brand b{display:block;font-weight:500;font-size:1.12rem;letter-spacing:-.015em}
+.brand small{display:block;font-size:.76rem;color:var(--muted);letter-spacing:.05em}
+.nav a.back{font-size:.8rem;text-transform:uppercase;letter-spacing:.1em;text-decoration:none;border-bottom:1px solid transparent;padding-bottom:2px}
+.nav a.back:hover{border-color:currentColor}
+
+/* hero scura */
+.top{background:var(--ink);color:var(--on-dark);padding-block:clamp(52px,6vw,96px)}
+.top h1{color:var(--on-dark)}
+.top .eyebrow{color:var(--muschio)}
+.top .lead{color:var(--on-dark);margin-top:clamp(18px,2.4vw,28px)}
+.top-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(36px,5vw,76px);align-items:center}
+.badge{display:inline-flex;align-items:center;gap:9px;font-size:.74rem;text-transform:uppercase;letter-spacing:.11em;
+       border:1px solid var(--line-dark);border-radius:100px;padding:7px 15px;margin-bottom:26px;color:var(--on-dark-mut)}
+.badge i{width:7px;height:7px;border-radius:50%;background:var(--rust);display:block}
+.inside{list-style:none;padding:0;margin:clamp(24px,3vw,34px) 0 0;border-top:1px solid var(--line-dark)}
+.inside li{display:grid;grid-template-columns:22px 1fr;gap:12px;padding:10px 0;border-bottom:1px solid var(--line-dark);
+           font-size:.98rem;color:var(--on-dark-mut)}
+.inside b{color:var(--muschio);font-weight:400;font-size:.8rem;padding-top:3px}
+
+/* mockup del documento */
+.mockup{margin:0}
+.mockup img{width:100%;box-shadow:0 26px 60px rgba(0,0,0,.34)}
+.mockup figcaption{margin-top:clamp(18px,2.4vw,30px);text-align:center;font-size:.76rem;
+                   text-transform:uppercase;letter-spacing:.11em;color:var(--on-dark-mut)}
+
+/* modulo */
+.form-card{background:rgba(20,34,24,.93);border:1px solid var(--line-dark);padding:clamp(26px,2.8vw,38px);
+           box-shadow:0 26px 60px rgba(0,0,0,.35)}
+.form-card h3{color:var(--on-dark);margin-bottom:6px;font-size:1.35rem}
+.form-card .hint{font-size:.9rem;color:var(--on-dark-mut);margin:0 0 22px}
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.field{display:flex;flex-direction:column;gap:7px}
+.field.full{grid-column:1/-1}
+.field label{font-size:.72rem;text-transform:uppercase;letter-spacing:.11em;color:var(--on-dark-mut)}
+.field input,.field select{font-family:inherit;font-size:1rem;color:var(--on-dark);background:rgba(10,18,12,.55);
+  border:1px solid var(--line-dark);padding:13px 14px;appearance:none;border-radius:0}
+.field input:focus,.field select:focus{outline:2px solid var(--muschio);outline-offset:1px;border-color:var(--muschio)}
+.field input::placeholder{color:rgba(173,184,174,.6)}
+.field select{background-image:linear-gradient(45deg,transparent 50%,var(--on-dark-mut) 50%),linear-gradient(135deg,var(--on-dark-mut) 50%,transparent 50%);
+  background-position:calc(100% - 20px) calc(50% - 2px),calc(100% - 14px) calc(50% - 2px);background-size:6px 6px,6px 6px;background-repeat:no-repeat}
+.consent{grid-column:1/-1;display:grid;grid-template-columns:20px 1fr;gap:11px;align-items:start;margin-top:4px}
+.consent input{width:18px;height:18px;margin:2px 0 0;accent-color:var(--rust)}
+.consent span{font-size:.86rem;color:var(--on-dark-mut);line-height:1.45}
+.consent a{color:var(--on-dark)}
+.submit{grid-column:1/-1;margin-top:8px}
+.btn{display:inline-block;width:100%;text-align:center;border:1px solid var(--rust);background:var(--rust);color:#fff;
+     font-family:inherit;font-size:.8rem;text-transform:uppercase;letter-spacing:.09em;padding:17px 24px;cursor:pointer;
+     text-decoration:none;transition:background .18s,border-color .18s}
+.btn:hover{background:#b8381f;border-color:#b8381f}
+.err{font-size:.86rem;color:#ff9478;margin:12px 0 0;min-height:1.2em}
+.ok{display:none}
+.ok h3{margin-bottom:8px}
+.ok p{color:var(--on-dark-mut);font-size:.96rem;margin:0 0 20px}
+.ok .hint2{margin:16px 0 0;font-size:.86rem}
+.ok #chi{color:var(--muschio)}
+.form-card.done form,.form-card.done>h3,.form-card.done>.hint{display:none}
+.form-card.done .ok{display:block}
+
+/* contenuti */
+.toc-grid{display:grid;grid-template-columns:1.12fr .88fr;gap:clamp(34px,5vw,70px);align-items:start}
+.toc{list-style:none;padding:0;margin:0;border-top:1px solid var(--line)}
+.shot{margin:0;position:sticky;top:40px;padding-top:clamp(12px,2vw,26px)}
+.shot .stack{position:relative}
+.shot img{border:1px solid rgba(26,43,30,.18)}
+.shot .back{position:absolute;left:14%;top:0;width:74%;transform:rotate(-7deg);
+            box-shadow:0 16px 38px rgba(26,43,30,.20);z-index:1}
+.shot .front{position:relative;width:84%;margin-left:8%;transform:rotate(2.5deg);
+             box-shadow:0 24px 54px rgba(26,43,30,.26);z-index:2}
+.shot figcaption{margin-top:clamp(16px,2.4vw,26px);font-size:.78rem;text-transform:uppercase;letter-spacing:.11em;color:var(--muted);text-align:center}
+.toc li{break-inside:avoid;display:grid;grid-template-columns:28px 1fr;gap:14px;padding:15px 0;
+        border-bottom:1px solid var(--line);color:var(--body);font-size:1rem}
+.toc b{color:var(--rust);font-weight:400;font-size:.8rem;padding-top:3px}
+.head{display:grid;grid-template-columns:.4fr 1.6fr;gap:40px;align-items:start;margin-bottom:48px}
+.pull{background:var(--rust);color:#fff;padding:clamp(34px,4.4vw,62px)}
+.pull p{margin:0;font-size:clamp(1.5rem,2.9vw,2.6rem);line-height:1.1;font-weight:300;letter-spacing:-.03em;max-width:24ch}
+.about{display:grid;grid-template-columns:.4fr 1.6fr;gap:40px}
+.about p{color:var(--body);max-width:62ch}
+.about p+p{margin-top:16px}
+.about .sign{margin-top:24px;font-style:italic;color:var(--rust)}
+.foot{padding-block:36px 48px;border-top:1px solid var(--line)}
+.foot .wrap{display:flex;flex-wrap:wrap;gap:22px 40px;justify-content:space-between;align-items:center}
+.foot img{width:70px}
+.foot .payoff{font-style:italic;color:var(--muted)}
+.foot nav{display:flex;flex-wrap:wrap;gap:22px;font-size:.8rem;text-transform:uppercase;letter-spacing:.09em}
+.foot a{text-decoration:none;border-bottom:1px solid transparent;padding-bottom:2px}
+.foot a:hover{border-color:currentColor}
+
+@media(max-width:940px){
+  :root{--gut:22px}
+  .top-grid,.head,.about{grid-template-columns:1fr;gap:28px}
+  .mockup{max-width:440px;margin-inline:auto}
+  .toc-grid{grid-template-columns:1fr;gap:30px}
+  .shot{position:static;max-width:460px}
+  .nav .wrap{height:76px}
+  .brand img{width:50px}
+}
+@media(max-width:520px){
+  body{font-size:17px}
+  .fields{grid-template-columns:1fr}
+  .brand small{display:none}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap">
+    <a class="brand" href="../">
+      <img src="../assets/ag-logo-round.svg" alt="">
+      <span><b>alessio granella</b><small>Brand &amp; Graphic Designer</small></span>
+    </a>
+    <a class="back" href="../">Torna all'AI Brand System</a>
+  </div>
+</nav>
+
+<header class="top">
+  <div class="wrap top-grid">
+    <div>
+      <span class="badge"><i></i> Whitepaper · 18 pagine · lettura 20 minuti</span>
+      <h1>Come si costruisce un brand che l'intelligenza artificiale <em>sa applicare.</em></h1>
+      <p class="lead">Che cos'è un AI Brand System, quali benefici porta, come si realizza e con quali strumenti. Dentro ci sono anche i cinque errori che costano mesi e una checklist di dodici domande per capire se serve alla tua azienda.</p>
+      <ul class="inside">
+        <li><b>01</b><span>Perché un brand book, da solo, non regge più il ritmo della produzione</span></li>
+        <li><b>02</b><span>I tre livelli del sistema, spiegati con gli schemi</span></li>
+        <li><b>03</b><span>Le quattro fasi: tempi, consegne e cosa serve dalla tua azienda</span></li>
+        <li><b>04</b><span>Come si giudica un risultato prima che arrivi a un cliente</span></li>
+        <li><b>05</b><span>Cinque errori che costano mesi, presi dai miei</span></li>
+      </ul>
+
+    </div>
+
+    <div class="form-card" id="card">
+        <h3>Scaricalo adesso</h3>
+        <p class="hint">Compila i campi e il documento si apre in una nuova scheda. Te ne mando una copia anche per email, così lo ritrovi quando ti serve.</p>
+        <form id="wpform" novalidate>
+          <div class="fields">
+            <div class="field">
+              <label for="nome">Nome</label>
+              <input id="nome" name="nome" type="text" autocomplete="given-name" required placeholder="Il tuo nome">
+            </div>
+            <div class="field">
+              <label for="cognome">Cognome</label>
+              <input id="cognome" name="cognome" type="text" autocomplete="family-name" required placeholder="Il tuo cognome">
+            </div>
+            <div class="field">
+              <label for="ruolo">Ruolo</label>
+              <select id="ruolo" name="ruolo" required>
+                <option value="" selected disabled>Scegli</option>
+                <option>Marketing manager</option>
+                <option>Designer</option>
+                <option>Altro</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" autocomplete="email" required placeholder="nome@azienda.it">
+            </div>
+            <label class="consent" for="privacy">
+              <input id="privacy" name="privacy" type="checkbox" required>
+              <span>Acconsento al trattamento dei dati per ricevere il documento e le comunicazioni collegate. Niente newsletter automatiche: se ti scrivo, lo faccio io.</span>
+            </label>
+            <div class="submit">
+              <button class="btn" type="submit">Scarica il PDF</button>
+              <p class="err" id="err" role="alert"></p>
+            </div>
+          </div>
+        </form>
+        <div class="ok" id="ok">
+          <h3>Grazie, <span id="chi">a presto</span>.</h3>
+          <p>Il whitepaper si è aperto in una nuova scheda del browser. Se non lo vedi, il tuo browser ha bloccato la finestra: apri il documento dal pulsante qui sotto.</p>
+          <a class="btn" id="dl" href="../assets/AI-Brand-System-Whitepaper.pdf" target="_blank" rel="noopener">Apri il whitepaper</a>
+          <p class="hint2">Ti ho appena mandato una copia anche per email, così lo ritrovi quando ti serve.</p>
+        </div>
+      </div>
+  </div>
+</header>
+
+<section class="band">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow">Cosa trovi dentro</p>
+      <div><h2>Dieci capitoli, cinque schemi, nessuna promessa non verificabile.</h2></div>
+    </div>
+    <div class="toc-grid">
+      <ol class="toc">
+      <li><b>01</b><span>Quando la produzione accelera, il brand è la prima cosa che si rompe</span></li>
+      <li><b>02</b><span>Che cos'è un AI Brand System, e lo schema di cosa entra e cosa esce</span></li>
+      <li><b>03</b><span>Perché proprio adesso</span></li>
+      <li><b>04</b><span>I benefici, e perché sono strutturali</span></li>
+      <li><b>05</b><span>Come si realizza: le quattro fasi</span></li>
+      <li><b>06</b><span>L'architettura: valori, componenti, versioni</span></li>
+      <li><b>07</b><span>Il controllo: conformità, qualità, gusto</span></li>
+      <li><b>08</b><span>Gli strumenti, e perché nessuno di loro è il sistema</span></li>
+      <li><b>09</b><span>Cinque errori che costano mesi</span></li>
+      <li><b>10</b><span>Sei pronto? Dodici domande con le soglie</span></li>
+    </ol>
+      <figure class="shot">
+        <div class="stack">
+          <img class="back" src="../assets/wp-inner.webp" alt="Una pagina interna del whitepaper con lo schema dei tre livelli">
+          <img class="front" src="../assets/wp-cover.webp" alt="La copertina del whitepaper AI Brand System">
+        </div>
+        <figcaption>18 pagine · A4 · PDF pronto da stampare</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="pull">
+  <div class="wrap">
+    <p>È la differenza tra un'intelligenza artificiale che produce e una che sa quando fermarsi.</p>
+  </div>
+</section>
+
+<section class="band" style="background:var(--soft)">
+  <div class="wrap about">
+    <p class="eyebrow">Chi l'ha scritto</p>
+    <div>
+      <p>Sono Alessio Granella, brand e graphic designer. Ho passato dieci anni dentro una software company, e lì ho visto il problema da vicino: il brand book approvato che funziona per qualche mese, poi le quindici presentazioni tutte diverse e nessuna uguale a quella originale.</p>
+      <p>Il whitepaper raccoglie il metodo che ho costruito per risolverlo, compresi gli errori che ho fatto per arrivarci. Non è una teoria: è il modo in cui lavoro.</p>
+      <p class="sign">Al tuo fianco ad ogni passo.</p>
+    </div>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap">
+    <a href="https://alessiogranella.com/"><img src="../assets/ag-logo-red.svg" alt="Alessio Granella"></a>
+    <span class="payoff">Al tuo fianco ad ogni passo.</span>
+    <nav>
+      <a href="../">AI Brand System</a>
+      <a href="../case-study/">Case study</a>
+      <a href="mailto:info@alessiogranella.com">info@alessiogranella.com</a>
+    </nav>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var form=document.getElementById('wpform'), card=document.getElementById('card'),
+      err=document.getElementById('err'), dl=document.getElementById('dl'), chi=document.getElementById('chi');
+
+  /* ─────────────────────────────────────────────────────────────────────────
+     DOVE ARRIVANO LE EMAIL
+     Una pagina statica non può spedire email da sola: serve un servizio che
+     le inoltri. Con Formspree (gratuito per questi volumi):
+       1. vai su formspree.io, registrati con info@alessiogranella.com
+       2. crea un nuovo form e copia il suo ID (una stringa tipo "xkgabcde")
+       3. incollalo qui sotto al posto di INCOLLA_QUI_L_ID
+     Da quel momento ogni compilazione ti arriva in posta con nome, cognome,
+     ruolo ed email di chi ha scaricato il documento.
+     Finché il campo resta vuoto la pagina funziona, ma il contatto lo perdi.
+     ───────────────────────────────────────────────────────────────────────── */
+  var FORM_ID='';                       // es. 'xkgabcde'
+  var ENDPOINT = FORM_ID ? 'https://formspree.io/f/'+FORM_ID : '';
+  var PDF='../assets/AI-Brand-System-Whitepaper.pdf';
+
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    err.textContent='';
+    var d={
+      nome:form.nome.value.trim(), cognome:form.cognome.value.trim(),
+      ruolo:form.ruolo.value, email:form.email.value.trim()
+    };
+    if(!d.nome||!d.cognome){ err.textContent='Servono nome e cognome.'; return; }
+    if(!d.ruolo){ err.textContent='Scegli il tuo ruolo.'; return; }
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(d.email)){ err.textContent='Controlla l\u2019indirizzo email.'; return; }
+    if(!form.privacy.checked){ err.textContent='Serve il consenso per mandarti il documento.'; return; }
+
+    if(ENDPOINT){
+      fetch(ENDPOINT,{
+        method:'POST',
+        headers:{'Content-Type':'application/json','Accept':'application/json'},
+        body:JSON.stringify({
+          _subject:'Whitepaper scaricato — '+d.nome+' '+d.cognome+' ('+d.ruolo+')',
+          _replyto:d.email,
+          Nome:d.nome, Cognome:d.cognome, Ruolo:d.ruolo, Email:d.email,
+          Documento:'AI Brand System — Whitepaper',
+          Pagina:location.href
+        })
+      }).catch(function(){});
+    }
+
+    /* il PDF si apre in una nuova scheda: chiamato dentro il gesto dell'utente,
+       così il blocco popup non scatta */
+    window.open(PDF,'_blank','noopener');
+
+    chi.textContent=d.nome;
+    card.classList.add('done');
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,699 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AI Brand System — Il tuo team produce, il brand resta il tuo · Alessio Granella</title>
+<meta name="description" content="Trasformo l'identità che hai già in un sistema che il tuo team e l'intelligenza artificiale usano ogni giorno per produrre materiali coerenti. Audit, setup, gestione continuativa.">
+<link rel="icon" type="image/svg+xml" href="assets/ag-logo-round.svg">
+<style>
+@font-face{font-family:Augustina;src:url('assets/fonts/AugustinaSlab-Light.otf') format('opentype');font-weight:300;font-style:normal;font-display:swap}
+@font-face{font-family:Augustina;src:url('assets/fonts/AugustinaSlab-Regular.otf') format('opentype');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:Augustina;src:url('assets/fonts/AugustinaSlab-Medium.otf') format('opentype');font-weight:500;font-style:normal;font-display:swap}
+@font-face{font-family:Augustina;src:url('assets/fonts/AugustinaSlab-Italic.otf') format('opentype');font-weight:400;font-style:italic;font-display:swap}
+
+:root{
+  --paper:#f0efee; --soft:#dfdad5; --white:#fff;
+  --ink:#1a2b1e; --verde:#243728; --rust:#d14124; --muschio:#8faf90;
+  --line:#c8c6c2; --line-dark:#485349; --muted:#5d6a60; --body:#344238;
+  --on-dark:#e4e8e4; --on-dark-mut:#adb8ae;
+  --max:1280px; --gut:32px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:Augustina,Georgia,serif;font-weight:400;font-size:18px;line-height:1.55;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit}
+h1,h2,h3,h4,p,ul{margin-top:0}
+h1,h2,h3{font-weight:300;letter-spacing:-.035em;text-wrap:balance}
+h1{font-size:clamp(3.1rem,7.4vw,7.4rem);line-height:.92;margin-bottom:0}
+h2{font-size:clamp(2.2rem,4.4vw,4.1rem);line-height:1;margin-bottom:0}
+h3{font-size:1.65rem;line-height:1.12;font-weight:400}
+em{font-style:normal;color:var(--rust)}
+.wrap{max-width:var(--max);margin-inline:auto;padding-inline:var(--gut)}
+.band{padding-block:clamp(72px,9vw,132px)}
+.eyebrow{color:var(--rust);font-size:.72rem;font-weight:500;text-transform:uppercase;letter-spacing:.15em;margin-bottom:0}
+.lead{font-size:1.14rem;color:var(--body);max-width:62ch}
+.dark{background:var(--ink);color:var(--on-dark)}
+.dark .eyebrow{color:var(--muschio)}
+.dark em{color:var(--muschio)}
+.dark .lead,.dark p{color:var(--on-dark-mut)}
+.dark h2,.dark h3{color:var(--on-dark)}
+
+/* intestazioni di sezione: eyebrow a sinistra, titolo a destra */
+.head{display:grid;grid-template-columns:.4fr 1.6fr;gap:40px;align-items:start;margin-bottom:56px}
+.head-copy p{margin:24px 0 0}
+
+/* nav */
+.nav{position:sticky;top:0;z-index:40;background:rgba(240,239,238,.93);backdrop-filter:blur(9px);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:96px;gap:20px}
+.brand{display:flex;align-items:center;gap:13px;text-decoration:none}
+.brand img{width:62px}
+.brand b{display:block;font-weight:500;font-size:1.12rem;letter-spacing:-.015em}
+.brand small{display:block;font-size:.76rem;color:var(--muted);letter-spacing:.05em}
+.nav-right{display:flex;align-items:center;gap:26px}
+.nav-link{font-size:.8rem;text-transform:uppercase;letter-spacing:.1em;text-decoration:none;border-bottom:1px solid transparent;padding-bottom:2px}
+.nav-link:hover{border-color:currentColor}
+
+/* bottoni */
+.btn{display:inline-block;text-decoration:none;font-size:.8rem;text-transform:uppercase;letter-spacing:.09em;padding:16px 24px;border:1px solid var(--ink);transition:background .18s,color .18s}
+.btn-primary{background:var(--rust);border-color:var(--rust);color:#fff}
+.btn-primary:hover{background:#b8381f;border-color:#b8381f}
+.btn-ghost:hover{background:var(--ink);color:var(--paper)}
+.dark .btn-ghost{border-color:var(--line-dark);color:var(--on-dark)}
+.dark .btn-ghost:hover{background:var(--paper);color:var(--ink);border-color:var(--paper)}
+.actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:34px}
+.micro{font-size:.92rem;color:var(--muted);margin:18px 0 0;max-width:52ch}
+
+/* hero */
+.hero{position:relative;overflow:hidden;background:var(--ink);color:var(--on-dark);
+       min-height:min(96vh,1120px);display:flex;flex-direction:column;justify-content:center;
+       padding-block:clamp(44px,5.2vw,80px)}
+.hero h1{color:var(--on-dark);font-size:clamp(2.2rem,3.4vw,3.05rem);line-height:1.04}
+.hero h1 em{color:#e6552f}
+.hero .lead{color:var(--on-dark);max-width:46ch}
+.hero .micro{color:var(--on-dark-mut)}
+.hero .pill{border-color:var(--line-dark);color:var(--on-dark-mut)}
+.hero .actions{flex-direction:column;align-items:flex-start}
+.hero .btn{min-width:max-content}
+.hero .btn-ghost{border-color:var(--line-dark);color:var(--on-dark)}
+.hero .btn-ghost:hover{background:var(--paper);color:var(--ink);border-color:var(--paper)}
+.hero>.wrap{width:100%}
+.hero-copy{position:relative;z-index:2;max-width:min(50ch,45%)}
+.hero-stage{position:absolute;inset:0;max-width:var(--max);margin-inline:auto;
+            padding-inline:var(--gut);pointer-events:none;z-index:1}
+.hero-art{position:absolute;top:50%;left:48%;transform:translateY(-52.54%);
+          width:min(58%,720px);margin:0}
+.hero-art img{width:100%;height:auto;display:block}
+.hero-flow{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none}
+.hero-flow path{fill:none;stroke:#e6552f;vector-effect:non-scaling-stroke}
+.hero-flow .base path{stroke-width:1.3;opacity:.26}
+.hero-flow .pulse path{stroke-width:3.2;stroke-linecap:round;stroke-dasharray:5 46;
+                       animation:heroflow 2.6s linear infinite}
+.hero-flow .pulse.in path:nth-child(2){animation-delay:-.18s}
+.hero-flow .pulse.in path:nth-child(3){animation-delay:-.36s}
+.hero-flow .pulse.in path:nth-child(4){animation-delay:-.54s}
+.hero-flow .pulse.in path:nth-child(5){animation-delay:-.72s}
+.hero-flow .pulse.in path:nth-child(6){animation-delay:-.9s}
+.hero-flow .pulse.out path{animation-delay:-1.3s}
+.hero-flow .pulse.out path:nth-child(2){animation-delay:-1.48s}
+.hero-flow .pulse.out path:nth-child(3){animation-delay:-1.66s}
+.hero-flow .pulse.out path:nth-child(4){animation-delay:-1.84s}
+.hero-flow .pulse.out path:nth-child(5){animation-delay:-2.02s}
+.hero-flow .pulse.out path:nth-child(6){animation-delay:-2.2s}
+.hero-flow .ring{transform-box:fill-box;transform-origin:center}
+.hero-flow .ring circle{fill:none;stroke:#e6552f;stroke-width:2.2}
+.hero-flow .r1{animation:heroring 2.6s ease-out infinite}
+.hero-flow .r2{animation:heroring 2.6s ease-out infinite;animation-delay:-1.3s}
+.hero-flow .src{fill:#e6552f;animation:herodot 2.6s ease-in-out infinite}
+.hero-flow .src:nth-of-type(2){animation-delay:-.32s}
+.hero-flow .src:nth-of-type(3){animation-delay:-.64s}
+.hero-flow .src:nth-of-type(4){animation-delay:-.96s}
+.hero-flow .src:nth-of-type(5){animation-delay:-1.28s}
+.hero-flow .src:nth-of-type(6){animation-delay:-1.6s}
+@keyframes heroflow{to{stroke-dashoffset:-102}}
+@keyframes heroring{0%{transform:scale(.5);opacity:.8}100%{transform:scale(2.1);opacity:0}}
+@keyframes herodot{0%,100%{opacity:.2}50%{opacity:1}}
+.pill{display:inline-flex;align-items:center;gap:9px;font-size:.76rem;text-transform:uppercase;letter-spacing:.11em;border:1px solid var(--line);border-radius:100px;padding:8px 15px;margin-bottom:30px;color:var(--muted)}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--rust)}
+.hero-copy .lead{margin-top:clamp(22px,3vw,32px)}
+
+/* problema */
+.prob{display:grid;grid-template-columns:repeat(2,1fr);border-top:1px solid var(--line)}
+.prob li{list-style:none;display:grid;grid-template-columns:44px 1fr;gap:16px;padding:26px 30px 30px 0;border-bottom:1px solid var(--line);font-size:1.04rem;color:var(--body)}
+.prob li:nth-child(even){border-left:1px solid var(--line);padding-left:30px}
+.prob span{color:var(--rust);font-size:.8rem;padding-top:5px}
+.prob-close{margin:38px 0 0;font-size:1.22rem;max-width:66ch;color:var(--ink)}
+
+/* diagnosi */
+.diag{display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,4vw,64px)}
+.diag p{font-size:1.1rem;color:var(--body)}
+.diag p+p{margin-top:20px}
+.diag .now{border-left:2px solid var(--rust);padding-left:24px}
+
+/* livelli */
+.levels{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.level{border:1px solid var(--line);background:var(--white);padding:30px;display:flex;flex-direction:column}
+.level small{color:var(--rust);font-size:.76rem;text-transform:uppercase;letter-spacing:.11em}
+.level h3{margin:36px 0 6px}
+.level .en{font-size:.8rem;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;margin:0 0 18px}
+.level ul{list-style:none;padding:0;margin:auto 0 0;border-top:1px solid var(--line)}
+.level li{padding:10px 0;border-bottom:1px solid var(--line);font-size:.92rem;color:var(--body)}
+
+/* consegna */
+.deliver{display:grid;grid-template-columns:repeat(2,1fr);gap:0 clamp(30px,4vw,60px);border-top:1px solid var(--line)}
+.deliver li{list-style:none;display:grid;grid-template-columns:34px 1fr;gap:14px;padding:22px 0;border-bottom:1px solid var(--line);color:var(--body);font-size:1rem}
+.deliver b{color:var(--rust);font-weight:400;font-size:.82rem;padding-top:4px}
+
+
+/* motore */
+.map{display:grid;grid-template-columns:minmax(210px,300px) 200px minmax(240px,340px);justify-content:space-between;align-items:center;gap:clamp(28px,5vw,70px);position:relative}
+.stack{display:grid;gap:9px;position:relative;z-index:2}
+.map-card{display:flex;justify-content:space-between;align-items:baseline;gap:12px;border:1px solid var(--ink);padding:15px;background:var(--white);font-size:.95rem}
+.map-card small{color:var(--muted);font-size:.74rem;letter-spacing:.05em}
+.engine{width:200px;aspect-ratio:1;border-radius:50%;display:grid;place-items:center;text-align:center;background:var(--ink);color:var(--paper);border:10px solid var(--rust);font-size:1.25rem;line-height:1.16;font-weight:300;position:relative;z-index:3}
+.engine:before,.engine:after{content:'';position:absolute;inset:-22px;border:1px solid var(--rust);border-radius:50%;opacity:0;animation:ripple 3.2s ease-out infinite}
+.engine:after{animation-delay:1.6s}
+.outputs .map-card{background:var(--soft)}
+.flow{position:absolute;inset:0;width:100%;height:100%;z-index:1;overflow:visible;pointer-events:none}
+.flow path{fill:none;stroke:var(--rust);stroke-width:1.5;vector-effect:non-scaling-stroke;opacity:.5}
+.flow .base path{marker-end:url(#arrow)}
+.flow .pulse path{stroke-width:3;stroke-linecap:round;stroke-dasharray:4 24;opacity:1;animation:flowmove 2.3s linear infinite}
+.flow .pulse path:nth-child(2),.flow .pulse path:nth-child(6){animation-delay:-.55s}
+.flow .pulse path:nth-child(3),.flow .pulse path:nth-child(7){animation-delay:-1.1s}
+.flow .pulse path:nth-child(4),.flow .pulse path:nth-child(8){animation-delay:-1.65s}
+@keyframes ripple{0%{transform:scale(.88);opacity:.6}100%{transform:scale(1.26);opacity:0}}
+@keyframes flowmove{to{stroke-dashoffset:-56}}
+
+/* case study */
+.cases{display:grid;gap:18px}
+.case{display:grid;grid-template-columns:.92fr 1.08fr;border:1px solid var(--ink);background:var(--white)}
+.case-media{background:var(--paper);border-right:1px solid var(--ink);overflow:hidden;min-height:360px}
+.case-media img{width:100%;height:100%;object-fit:cover;object-position:center 42%}
+.case-body{padding:clamp(26px,3vw,44px);display:flex;flex-direction:column}
+.case-body h3{font-size:clamp(1.7rem,2.5vw,2.5rem);font-weight:300;letter-spacing:-.03em;margin:16px 0 14px}
+.case-body p{color:var(--body);margin:0 0 26px;font-size:1rem}
+.case-meta{display:grid;grid-template-columns:repeat(3,1fr);gap:0 20px;border-top:1px solid var(--line);margin:0 0 28px}
+.case-meta div{padding:14px 0;border-bottom:1px solid var(--line)}
+.case-meta dt{font-size:.7rem;text-transform:uppercase;letter-spacing:.11em;color:var(--muted);margin-bottom:5px}
+.case-meta dd{margin:0;font-size:.94rem}
+.case-body .btn{align-self:flex-start;margin-top:auto}
+.cases-note{margin:26px 0 0;font-size:.95rem;color:var(--muted)}
+.cases-note a{color:var(--ink)}
+
+/* controllo */
+.ctrl{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line-dark)}
+.ctrl article{padding:26px 28px 40px 0;border-bottom:1px solid var(--line-dark)}
+.ctrl article+article{border-left:1px solid var(--line-dark);padding-left:28px}
+.ctrl small{color:var(--muschio);font-size:.76rem;text-transform:uppercase;letter-spacing:.11em}
+.ctrl h3{margin:38px 0 12px}
+.ctrl p{margin:0;font-size:.95rem}
+
+/* fasi */
+.phases{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.phase{border:1px solid var(--ink);background:var(--white);padding:30px;display:flex;flex-direction:column}
+.phase.key{background:var(--ink);color:var(--on-dark);border-color:var(--ink)}
+.phase small{color:var(--rust);font-size:.76rem;text-transform:uppercase;letter-spacing:.11em}
+.phase.key small{color:var(--muschio)}
+.phase h3{margin:38px 0 4px}
+.phase .when{font-size:.8rem;text-transform:uppercase;letter-spacing:.09em;color:var(--muted);margin-bottom:16px}
+.phase.key .when{color:var(--on-dark-mut)}
+.phase p{font-size:.95rem;color:var(--body);margin:0 0 22px}
+.phase.key p{color:var(--on-dark-mut)}
+.phase ul{list-style:none;padding:0;margin:auto 0 0;border-top:1px solid var(--line)}
+.phase li{padding:10px 0;border-bottom:1px solid var(--line);font-size:.88rem}
+.phase.key ul,.phase.key li{border-color:var(--line-dark)}
+.phase .need{margin:18px 0 0;padding-top:16px;border-top:1px dashed var(--line);font-size:.88rem;color:var(--muted)}
+.phase.key .need{border-color:var(--line-dark);color:var(--on-dark-mut)}
+.phase .need b{display:block;font-weight:500;color:var(--ink);font-size:.74rem;text-transform:uppercase;letter-spacing:.1em;margin-bottom:5px}
+.phase.key .need b{color:var(--muschio)}
+.phases-note{display:grid;grid-template-columns:.4fr 1.6fr;gap:40px;margin-top:38px;border-top:1px solid var(--line);padding-top:24px}
+.phases-note p{margin:0;font-size:.95rem;color:var(--body);max-width:78ch}
+
+/* fit */
+.fit{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.fit-col{border:1px solid var(--line);padding:30px;background:var(--white)}
+.fit-col.no{background:transparent}
+.fit-col h3{font-size:1.4rem;margin-bottom:20px}
+.fit-col ul{list-style:none;padding:0;margin:0}
+.fit-col li{padding:12px 0 12px 30px;border-bottom:1px solid var(--line);position:relative;font-size:.98rem;color:var(--body)}
+.fit-col li:last-child{border-bottom:0}
+.fit-col li:before{position:absolute;left:0;top:12px;font-size:.95rem}
+.fit-col.yes li:before{content:'+';color:var(--rust)}
+.fit-col.no li:before{content:'–';color:var(--muted)}
+
+/* faq */
+.faq{border-top:1px solid var(--line)}
+.faq details{border-bottom:1px solid var(--line)}
+.faq summary{cursor:pointer;list-style:none;padding:26px 40px 26px 0;font-size:1.28rem;position:relative}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary:after{content:'+';position:absolute;right:6px;top:24px;color:var(--rust);font-size:1.5rem;line-height:1}
+.faq details[open] summary:after{content:'–'}
+.faq p{margin:0 0 28px;max-width:74ch;color:var(--body)}
+
+/* chi sono */
+.about-p{font-size:1.06rem;color:var(--body);margin:18px 0 0;max-width:62ch}
+.sign{margin:28px 0 0;font-style:italic;font-size:1.05rem;color:var(--rust)}
+
+/* cta */
+.cta-grid{display:grid;grid-template-columns:1.3fr .7fr;gap:clamp(30px,4vw,64px);align-items:end}
+.cta-steps{list-style:none;padding:0;margin:0;border-top:1px solid var(--line-dark)}
+.cta-steps li{padding:14px 0;border-bottom:1px solid var(--line-dark);font-size:.95rem;color:var(--on-dark-mut);display:grid;grid-template-columns:30px 1fr;gap:12px}
+.cta-steps b{color:var(--muschio);font-weight:400;font-size:.8rem;padding-top:3px}
+.alt{margin-top:40px;border-top:1px solid var(--line-dark);padding-top:26px;display:flex;flex-wrap:wrap;gap:16px 34px;align-items:baseline;justify-content:space-between}
+.alt p{margin:0;max-width:56ch}
+.alt a{white-space:nowrap;font-size:.8rem;text-transform:uppercase;letter-spacing:.09em;text-decoration:none;border-bottom:1px solid;padding-bottom:3px;color:var(--on-dark)}
+
+/* footer */
+.foot{padding-block:40px 54px;border-top:1px solid var(--line)}
+.foot .wrap{display:flex;flex-wrap:wrap;gap:24px 40px;justify-content:space-between;align-items:center}
+.foot img{width:74px}
+.foot .payoff{font-style:italic;color:var(--muted)}
+.foot nav{display:flex;flex-wrap:wrap;gap:22px;font-size:.8rem;text-transform:uppercase;letter-spacing:.09em}
+.foot a{text-decoration:none;border-bottom:1px solid transparent;padding-bottom:2px}
+.foot a:hover{border-color:currentColor}
+
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+.reveal.on{opacity:1;transform:none}
+
+@media(max-width:940px){
+  :root{--gut:22px}
+  .head,.phases-note{grid-template-columns:1fr;gap:18px;margin-bottom:38px}
+  .diag,.cta-grid{grid-template-columns:1fr}
+  .hero{min-height:0;display:block}
+  .hero-copy{max-width:none}
+  .hero-stage{position:static;max-width:none;padding-inline:0}
+  .hero-art{position:static;transform:none;height:auto;width:100%;max-width:560px;margin:38px auto 0}
+  .hero-art img{width:100%;height:auto}
+  .levels,.phases,.fit{grid-template-columns:1fr}
+  .map{grid-template-columns:1fr;gap:26px}
+  .flow{display:none}
+  .engine{margin-inline:auto}
+  .prob{grid-template-columns:1fr}
+  .prob li:nth-child(even){border-left:0;padding-left:0}
+  .prob li{padding-right:0}
+  .ctrl{grid-template-columns:1fr}
+  .ctrl article{padding-right:0;padding-bottom:30px}
+  .ctrl article+article{border-left:0;padding-left:0}
+  .case{grid-template-columns:1fr}
+  .case-media{border-right:0;border-bottom:1px solid var(--ink);min-height:0;aspect-ratio:16/10}
+  .case-meta{grid-template-columns:1fr}
+  .deliver{grid-template-columns:1fr}
+  .nav-link{display:none}
+  .nav .wrap{height:76px}
+  .brand img{width:50px}
+}
+@media(max-width:520px){
+  body{font-size:17px}
+  .btn{display:block;text-align:center}
+  .actions{flex-direction:column;align-items:stretch}
+}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}.engine:before,.engine:after,.flow .pulse path,.hero-flow path,.hero-flow .ring,.hero-flow .src{animation:none}}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap">
+    <a class="brand" href="https://alessiogranella.com/">
+      <img src="assets/ag-logo-round.svg" alt="">
+      <span><b>alessio granella</b><small>Brand &amp; Graphic Designer</small></span>
+    </a>
+    <div class="nav-right">
+      <a class="nav-link" href="#come">Come funziona</a>
+      <a class="nav-link" href="#casestudy">Case study</a>
+      <a class="btn btn-primary" href="mailto:info@alessiogranella.com?subject=AI%20Brand%20System%20%E2%80%94%20prenotiamo%20una%20call">Prenota una call</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-stage">
+    <figure class="hero-art">
+      <img src="assets/hero-isometric.webp" alt="Il sistema in tre livelli: i contenitori del brandbook in basso, l'orchestratore al centro, gli asset prodotti in alto">
+      <svg class="hero-flow" viewBox="0 0 1100 2002" preserveAspectRatio="none" aria-hidden="true">
+          <g transform="translate(0,300)">
+          <g class="base in">
+            <path d="M205 860 C330 820 430 760 546 660"/>
+            <path d="M385 960 C430 880 490 760 548 660"/>
+            <path d="M510 1100 C520 940 535 780 550 662"/>
+            <path d="M635 1090 C610 940 570 780 553 662"/>
+            <path d="M710 960 C665 880 610 760 556 660"/>
+            <path d="M900 850 C790 820 680 760 558 660"/>
+          </g>
+          <g class="base out">
+            <path d="M548 400 C470 385 330 340 236 318"/>
+            <path d="M548 400 C500 370 430 325 390 305"/>
+            <path d="M548 400 C535 350 515 290 504 248"/>
+            <path d="M548 400 C575 355 605 315 618 296"/>
+            <path d="M548 400 C620 365 710 295 764 256"/>
+            <path d="M548 400 C630 385 720 360 782 348"/>
+          </g>
+          <g class="pulse in">
+            <path d="M205 860 C330 820 430 760 546 660"/>
+            <path d="M385 960 C430 880 490 760 548 660"/>
+            <path d="M510 1100 C520 940 535 780 550 662"/>
+            <path d="M635 1090 C610 940 570 780 553 662"/>
+            <path d="M710 960 C665 880 610 760 556 660"/>
+            <path d="M900 850 C790 820 680 760 558 660"/>
+          </g>
+          <g class="pulse out">
+            <path d="M548 400 C470 385 330 340 236 318"/>
+            <path d="M548 400 C500 370 430 325 390 305"/>
+            <path d="M548 400 C535 350 515 290 504 248"/>
+            <path d="M548 400 C575 355 605 315 618 296"/>
+            <path d="M548 400 C620 365 710 295 764 256"/>
+            <path d="M548 400 C630 385 720 360 782 348"/>
+          </g>
+          <circle class="src" cx="205" cy="860" r="7"/>
+          <circle class="src" cx="385" cy="960" r="7"/>
+          <circle class="src" cx="510" cy="1100" r="7"/>
+          <circle class="src" cx="635" cy="1090" r="7"/>
+          <circle class="src" cx="710" cy="960" r="7"/>
+          <circle class="src" cx="900" cy="850" r="7"/>
+          <g class="ring r1"><circle cx="548" cy="470" r="42"/></g>
+          <g class="ring r2"><circle cx="548" cy="470" r="42"/></g>
+        </g>
+        </svg>
+    </figure>
+  </div>
+  <div class="wrap">
+    <div class="hero-copy">
+      <span class="pill"><span class="dot"></span> AI Brand System</span>
+      <h1>Senza sistema l'AI ti porta verso la media del settore. <em>Con un sistema ti porta verso te stesso.</em></h1>
+      <p class="lead">Prendo l'identità che hai già e la trasformo nel contesto che il tuo team e l'AI usano per produrre. Le regole smettono di stare in un documento e finiscono dentro i file da cui nascono i lavori.</p>
+      <div class="actions">
+        <a class="btn btn-primary" href="whitepaper/">Scarica il whitepaper</a>
+        <a class="btn btn-ghost" href="case-study/">Guardalo su un cliente vero</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<section class="band" style="background:var(--soft)">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow">Il problema</p>
+      <div class="head-copy"><h2>Se ti riconosci in tre di queste, il sistema ti serve.</h2></div>
+    </div>
+    <ul class="prob">
+      <li><span>01</span><p>Ogni presentazione nasce dal file di un'altra presentazione, che a sua volta era stata adattata da un'altra ancora.</p></li>
+      <li><span>02</span><p>Il sito, le slide commerciali e il profilo LinkedIn sembrano appartenere a tre aziende diverse.</p></li>
+      <li><span>03</span><p>Per cambiare un colore in un template devi aspettare la persona che quel template l'ha creato.</p></li>
+      <li><span>04</span><p>Qualcuno in azienda ha iniziato a generare immagini e testi con l'AI. E si vede.</p></li>
+      <li><span>05</span><p>Il brand book esiste. L'ultima volta che qualcuno l'ha aperto era il giorno della consegna.</p></li>
+      <li><span>06</span><p>Le richieste di grafica si accumulano, e intanto il marketing rallenta per aspettare i materiali.</p></li>
+    </ul>
+    <p class="prob-close">Il gusto non c'entra. La regola esiste, ma non sta dove si lavora: sta in un documento, mentre il lavoro succede altrove.</p>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow">Perché succede</p>
+      <div class="head-copy"><h2>Un PDF può descrivere il brand. Applicarlo, no.</h2></div>
+    </div>
+    <div class="diag">
+      <div>
+        <p>Il brand book elenca i colori giusti e mostra gli usi sbagliati del logo. Poi qualcuno apre una presentazione alle sei e mezza di sera, prende il blu da uno screenshot perché è più veloce che cercare il codice esatto, e va avanti.</p>
+        <p>Il documento non era sbagliato. Semplicemente non era lì nel momento in cui serviva, e chiedere a qualcuno di ricordarsi sei regole mentre lavora di fretta non ha mai funzionato.</p>
+      </div>
+      <div class="now">
+        <p>In un sistema i colori sono valori che i file leggono da soli. I componenti sono blocchi già montati, con dentro le spaziature corrette. Le pagine tipo esistono già, e chi le usa parte da lì.</p>
+        <p>E l'intelligenza artificiale riceve tutto questo scritto in una forma che può applicare davvero: non un PDF da interpretare, ma regole nominate, esempi giusti ed esempi scartati.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band" style="background:var(--soft)">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow">Cos'è</p>
+      <div class="head-copy">
+        <h2>Tre livelli, dal singolo colore alla pagina già montata.</h2>
+        <p class="lead">Ogni livello poggia su quello sotto. Cambi un valore in cima e si aggiorna tutto quello che lo usa, senza rifare niente a mano.</p>
+      </div>
+    </div>
+    <div class="levels">
+      <article class="level">
+        <small>Livello 01</small>
+        <h3>Le decisioni di base</h3>
+        <p class="en">Foundations</p>
+        <ul><li>Colori e scale tonali</li><li>Tipografia e gerarchie</li><li>Spaziature e griglie</li><li>Icone e grafici</li></ul>
+      </article>
+      <article class="level">
+        <small>Livello 02</small>
+        <h3>I pezzi riutilizzabili</h3>
+        <p class="en">Components</p>
+        <ul><li>Pulsanti, tag, schede</li><li>Tabelle e numeri</li><li>Moduli e campi</li><li>Navigazione e footer</li></ul>
+      </article>
+      <article class="level">
+        <small>Livello 03</small>
+        <h3>Le pagine già montate</h3>
+        <p class="en">UI Blocks</p>
+        <ul><li>Aperture di sito e sezioni</li><li>Report e analisi</li><li>Dashboard e tabelle dati</li><li>Moduli editoriali e FAQ</li></ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="band" style="overflow:hidden">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow">Il motore</p>
+      <div class="head-copy">
+        <h2>Da quello che hai gi&#224;, a quello che ti serve domani.</h2>
+        <p class="lead">A sinistra c'&#232; il materiale che esiste oggi in azienda. A destra quello che il sistema produce, ogni volta dentro le stesse regole.</p>
+      </div>
+    </div>
+    <div class="map">
+      <svg class="flow" viewBox="0 0 1200 270" preserveAspectRatio="none" aria-hidden="true"><defs><marker id="arrow" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto" markerUnits="strokeWidth"><path d="M0 0 L7 3.5 L0 7 Z" fill="#d14124" stroke="none"/></marker></defs><g class="base"><path d="M320 30 C405 30 420 135 475 135"/><path d="M320 100 C405 100 420 135 475 135"/><path d="M320 170 C405 170 420 135 475 135"/><path d="M320 240 C405 240 420 135 475 135"/><path d="M685 135 C740 135 755 30 840 30"/><path d="M685 135 C740 135 755 100 840 100"/><path d="M685 135 C740 135 755 170 840 170"/><path d="M685 135 C740 135 755 240 840 240"/></g><g class="pulse"><path d="M320 30 C405 30 420 135 475 135"/><path d="M320 100 C405 100 420 135 475 135"/><path d="M320 170 C405 170 420 135 475 135"/><path d="M320 240 C405 240 420 135 475 135"/><path d="M685 135 C740 135 755 30 840 30"/><path d="M685 135 C740 135 755 100 840 100"/><path d="M685 135 C740 135 755 170 840 170"/><path d="M685 135 C740 135 755 240 840 240"/></g></svg>
+      <div class="stack">
+        <div class="map-card"><span>Brand book</span><small>regole</small></div>
+        <div class="map-card"><span>Asset esistenti</span><small>esempi</small></div>
+        <div class="map-card"><span>Design token</span><small>codice</small></div>
+        <div class="map-card"><span>Componenti</span><small>pattern</small></div>
+      </div>
+      <div class="engine">AI Brand<br>System</div>
+      <div class="stack outputs">
+        <div class="map-card"><span>Social content</span><small>01</small></div>
+        <div class="map-card"><span>Web page e landing</span><small>02</small></div>
+        <div class="map-card"><span>Presentazioni e report</span><small>03</small></div>
+        <div class="map-card"><span>Immagini e video</span><small>04</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow">Cosa ti ritrovi in mano</p>
+      <div class="head-copy">
+        <h2>Sette cose che esistono come file.</h2>
+        <p class="lead">Alla consegna il lunedì mattina hai questo, dentro un tuo repository, in formati che qualsiasi sviluppatore o designer sa aprire.</p>
+      </div>
+    </div>
+    <ul class="deliver">
+      <li><b>01</b><p>Una libreria che si apre dal browser, dove ogni elemento ha l'anteprima dal vivo e il codice da copiare.</p></li>
+      <li><b>02</b><p>Colori, font e spaziature come valori che i file leggono, non come screenshot da cui prelevare a occhio.</p></li>
+      <li><b>03</b><p>Componenti e pagine già montate per sito, report e dashboard, pronte da riempire.</p></li>
+      <li><b>04</b><p>Il contesto scritto che l'intelligenza artificiale legge prima di produrre qualsiasi cosa.</p></li>
+      <li><b>05</b><p>Una rubrica per giudicare un risultato, scritta perché la sappia usare anche chi non è designer.</p></li>
+      <li><b>06</b><p>L'archivio degli esempi approvati e di quelli scartati, ognuno con il motivo della decisione.</p></li>
+      <li><b>07</b><p>La documentazione del comportamento: quando si usa un componente, come si compone, quali eccezioni evitare.</p></li>
+    </ul>
+  </div>
+</section>
+
+<section class="band" id="casestudy" style="background:var(--soft)">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow">Esplora i case study</p>
+      <div class="head-copy">
+        <h2>Il sistema, raccontato per intero.</h2>
+        <p class="lead">Un caso reale, dall'inizio alla fine: l'audit del materiale esistente, l'architettura del sistema, il controllo qualità e gli output finiti, ognuno apribile e verificabile.</p>
+      </div>
+    </div>
+    <div class="cases">
+      <!-- Per aggiungere un secondo caso: duplica questo <article class="case"> e cambia immagine, testi e link. -->
+      <article class="case">
+        <div class="case-media">
+          <img src="assets/case-openeconomics.webp" alt="Il design system OpenEconomics aperto su un portatile">
+        </div>
+        <div class="case-body">
+          <p class="eyebrow">Caso 01 · Analisi economica e advisory</p>
+          <h3>OpenEconomics</h3>
+          <p>Un patrimonio visivo sparso tra brand book, report, presentazioni e prodotti digitali, trasformato in una sola fonte di verità. Oggi da quel sistema nascono pagine di sito, dashboard, report e un video intero prodotto senza software di montaggio.</p>
+          <dl class="case-meta">
+            <div><dt>Ruolo</dt><dd>Design direction</dd></div>
+            <div><dt>Output</dt><dd>AI Brand System</dd></div>
+            <div><dt>Stato</dt><dd>In produzione</dd></div>
+          </dl>
+          <a class="btn btn-ghost" href="case-study/">Leggi il case study ↗</a>
+        </div>
+      </article>
+    </div>
+    <p class="cases-note">Vuoi vedere il sistema applicato al tuo settore? <a href="mailto:info@alessiogranella.com?subject=AI%20Brand%20System%20%E2%80%94%20prenotiamo%20una%20call">Chiedimelo in call</a>.</p>
+  </div>
+</section>
+
+<section class="band dark">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow">La differenza</p>
+      <div class="head-copy">
+        <h2>Il sistema sa anche dire di no.</h2>
+        <p class="lead">Un modello che produce in fretta produce in fretta anche gli errori. Per questo non consegno solo le regole: definisco come si giudica un risultato prima che arrivi a un cliente. Il giudizio vive in file, non nella testa di chi era in stanza quel giorno.</p>
+      </div>
+    </div>
+    <div class="ctrl">
+      <article>
+        <small>Primo livello · Conformità</small>
+        <h3>La regola è codice</h3>
+        <p>Colori, spaziature e componenti non sono consigli: sono valori e vincoli. Quello che esce dal sistema si vede subito, e si corregge alla fonte invece che su ogni singolo file.</p>
+      </article>
+      <article>
+        <small>Secondo livello · Qualità</small>
+        <h3>Una rubrica esplicita</h3>
+        <p>Gerarchia, leggibilità, equilibrio, trattamento del dato. Ogni risultato viene valutato su criteri con un nome, non su impressioni. Gli stessi criteri valgono per me, per il tuo team e per l'AI.</p>
+      </article>
+      <article>
+        <small>Terzo livello · Gusto</small>
+        <h3>Un archivio di scelte</h3>
+        <p>Gli esempi approvati e quelli buttati vengono conservati insieme al motivo. È così che il sistema impara a distinguere quello che è corretto da quello che è buono.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="come" style="background:var(--soft)">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow">Come si lavora</p>
+      <div class="head-copy">
+        <h2>Tre fasi. Ci si può fermare dopo ognuna.</h2>
+        <p class="lead">Nessuna delle tre ti obbliga alla successiva. Se dopo l'audit decidi di non andare avanti, il documento che hai in mano resta utile lo stesso.</p>
+      </div>
+    </div>
+    <div class="phases">
+      <article class="phase">
+        <small>Fase 01 · Diagnosi</small>
+        <h3>Audit e lettura</h3>
+        <p class="when">Due o tre settimane</p>
+        <p>Guardo tutto il materiale che hai già e ti dico cosa si può sistematizzare, cosa va rifatto e cosa conviene lasciare com'è.</p>
+        <ul><li>Analisi del patrimonio visivo</li><li>Principi ricorrenti resi espliciti</li><li>Roadmap con priorità e tempi</li></ul>
+        <p class="need"><b>Cosa serve da te</b>L'accesso ai file e due ore di chi conosce il brand meglio di tutti.</p>
+      </article>
+      <article class="phase">
+        <small>Fase 02 · Costruzione</small>
+        <h3>Setup del sistema</h3>
+        <p class="when">Da sei a dieci settimane</p>
+        <p>Costruisco la fonte di verità e il contesto che permette all'intelligenza artificiale di lavorare dentro il tuo brand invece che accanto.</p>
+        <ul><li>Le decisioni di base, i pezzi, le pagine</li><li>Libreria consultabile e versionata</li><li>Contesto e regole per l'AI</li><li>Rubrica di valutazione</li></ul>
+        <p class="need"><b>Cosa serve da te</b>Una persona di riferimento e circa un'ora a settimana per le revisioni.</p>
+      </article>
+      <article class="phase key">
+        <small>Fase 03 · Continuità</small>
+        <h3>Gestione e evoluzione</h3>
+        <p class="when">Canone mensile</p>
+        <p>Un sistema fermo invecchia. Ogni mese entrano formati nuovi, l'archivio delle scelte si aggiorna e la produzione del team resta sotto controllo.</p>
+        <ul><li>Nuovi componenti e template</li><li>Controllo qualità sugli output</li><li>Aggiornamento dell'archivio</li><li>Affiancamento al team</li></ul>
+        <p class="need"><b>Cosa serve da te</b>Le richieste, quando arrivano. Nessuna riunione fissa.</p>
+      </article>
+    </div>
+    <div class="phases-note">
+      <p class="eyebrow">Da sapere</p>
+      <p>I tempi dipendono da quanto materiale esiste già e si definiscono dopo l'audit. Il lavoro creativo su misura, campagne e progetti unici, resta fuori dal canone e si quota a parte: il sistema serve a liberarti tempo per quello, non a sostituirlo.</p>
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow">Onestà</p>
+      <div class="head-copy"><h2>Per chi funziona, e per chi no.</h2></div>
+    </div>
+    <div class="fit">
+      <div class="fit-col yes">
+        <h3>Ha senso se</h3>
+        <ul>
+          <li>Pubblichi qualcosa ogni settimana, su più di un canale.</li>
+          <li>Dentro l'azienda c'è già qualcuno che produce materiali.</li>
+          <li>Hai un'identità, anche imperfetta, da cui partire.</li>
+          <li>Vuoi usare l'intelligenza artificiale senza che si capisca.</li>
+          <li>Ti pesa dipendere da un fornitore per ogni banalità.</li>
+        </ul>
+      </div>
+      <div class="fit-col no">
+        <h3>Non ha senso se</h3>
+        <ul>
+          <li>Ti serve un logo, e per ora solo quello.</li>
+          <li>Devi fare una campagna e poi basta.</li>
+          <li>Nessuno in azienda produce materiali, e nessuno inizierà.</li>
+          <li>Preferisci continuare a delegare ogni singolo file a me.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow">Domande</p>
+      <div class="head-copy"><h2>Quello che mi chiedono prima di partire.</h2></div>
+    </div>
+    <div class="faq">
+      <details open><summary>Abbiamo già un brand book. Non basta?</summary><p>Il brand book descrive, e continuerà a servire: diventa la fonte da cui parte il lavoro. Quello che non può fare è impedire l'errore mentre qualcuno lavora di fretta. Il sistema sì, perché la regola vive dentro i file che generano i materiali.</p></details>
+      <details><summary>Il nostro team non è tecnico.</summary><p>Non serve che lo sia. Chi produce contenuti apre una libreria e un back office: sceglie un blocco, scrive, pubblica. Il codice sta sotto e riguarda me e chi sviluppa.</p></details>
+      <details><summary>L'intelligenza artificiale non rischia di snaturare il brand?</summary><p>Sì, quando lavora senza vincoli, ed è quello che succede oggi in metà delle aziende che la usano. Qui riceve regole con un nome, esempi corretti, esempi scartati e criteri di valutazione. La direzione la decidiamo noi, lei la applica.</p></details>
+      <details><summary>Quanto costa?</summary><p>Dipende da quanto materiale esiste e da quanti formati devono entrare nel sistema, quindi una cifra prima di aver visto i tuoi file sarebbe inventata. L'audit è la fase più contenuta e serve proprio a questo: alla fine hai un numero reale e sei libero di fermarti.</p></details>
+      <details><summary>Quanto tempo dobbiamo metterci noi?</summary><p>Due ore in fase di audit, circa un'ora a settimana durante il setup. Dopo, solo il tempo di mandarmi le richieste. Il lavoro pesante sta dalla mia parte.</p></details>
+      <details><summary>Cosa succede se smettiamo di lavorare insieme?</summary><p>Il sistema è tuo. Valori, componenti, documentazione e archivio restano nel tuo repository, in formati aperti che qualsiasi studio può riprendere in mano. Il canone si rinnova perché serve, non perché sei bloccato.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="band" style="background:var(--soft)">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow">Chi sono</p>
+      <div class="head-copy">
+        <h2>Costruisco il sistema, poi mi tolgo di mezzo.</h2>
+        <p class="lead">Sono Alessio Granella, brand e graphic designer. Lavoro con uffici marketing e aziende che devono comunicare ogni settimana: OpenEconomics, Olimpias, la Veneranda Fabbrica del Duomo di Milano, Tipico, Produttori Arborea.</p>
+        <p class="about-p">Da quando l'intelligenza artificiale &#232; entrata nella produzione ho smesso di consegnare soltanto file. Costruisco il sistema che permette di produrne altri senza di me, e insegno a quel sistema a riconoscere quando il risultato non va bene.</p>
+        <p class="sign">Al tuo fianco ad ogni passo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band dark" id="contatto">
+  <div class="wrap">
+    <div class="cta-grid">
+      <div>
+        <p class="eyebrow">Iniziamo</p>
+        <h2 style="margin:14px 0 24px">Il tuo brand è pronto a <em>lavorare da solo?</em></h2>
+        <p class="lead">Mezz'ora, senza impegno. Guardiamo insieme cosa produci oggi e dove si perde tempo. Se il sistema non è la risposta giusta per te, te lo dico nella stessa call.</p>
+        <div class="actions"><a class="btn btn-primary" href="mailto:info@alessiogranella.com?subject=AI%20Brand%20System%20%E2%80%94%20prenotiamo%20una%20call">Prenota la call ↗</a></div>
+      </div>
+      <ol class="cta-steps">
+        <li><b>01</b><span>Mi scrivi e fissiamo mezz'ora.</span></li>
+        <li><b>02</b><span>Guardo il materiale che hai già.</span></li>
+        <li><b>03</b><span>Ti dico cosa si può sistematizzare e cosa no.</span></li>
+        <li><b>04</b><span>Se ha senso, si parte dall'audit.</span></li>
+      </ol>
+    </div>
+    <div class="alt">
+      <p>Non è il momento di una call? Mandami il link del tuo sito e ti rispondo con due righe su cosa sistematizzerei per primo. Senza che debba prepararmi niente.</p>
+      <a href="mailto:info@alessiogranella.com?subject=Due%20righe%20sul%20mio%20brand&amp;body=Ciao%20Alessio%2C%20questo%20%C3%A8%20il%20nostro%20sito%3A%20">Mandami il link ↗</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <a href="https://alessiogranella.com/"><img src="assets/ag-logo-red.svg" alt="Alessio Granella"></a>
+    <span class="payoff">Al tuo fianco ad ogni passo.</span>
+    <nav>
+      <a href="case-study/">Case study</a>
+      <a href="https://alessiogranella.github.io/openeconomics-design-system/v0.4.0/">Design system</a>
+      <a href="mailto:info@alessiogranella.com">info@alessiogranella.com</a>
+    </nav>
+  </div>
+</footer>
+
+<script>
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}}),{threshold:.08,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.band .head, .band .prob, .band .levels, .band .map, .band .deliver, .band .ctrl, .band .phases, .band .fit, .band .faq, .band .cases, .cta-grid').forEach(el=>{el.classList.add('reveal');io.observe(el)});
+</script>
+</body>
+</html>
