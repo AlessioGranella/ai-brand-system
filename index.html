@@ -289,6 +289,34 @@ em{font-style:normal;color:var(--rust)}
   .actions{flex-direction:column;align-items:stretch}
 }
 @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}.engine:before,.engine:after,.flow .pulse path,.hero-flow path,.hero-flow .ring,.hero-flow .src{animation:none}}
+
+/* ── modulo di contatto in fondo alla pagina ─────────────────────────────
+   Serve perché il solo mailto: lascia fuori chi non ha un client di posta
+   configurato: il link non apre nulla e il contatto si perde in silenzio. */
+.cta-grid{align-items:start}
+.cta-form{border:1px solid var(--line-dark);padding:26px;background:rgba(255,255,255,.03)}
+.cta-form h3{margin:0 0 4px;font-size:1.15rem;font-weight:400;color:var(--on-dark)}
+.cta-form .sub{margin:0 0 18px;font-size:.85rem;color:var(--on-dark-mut)}
+.cta-form .campo{margin-bottom:14px}
+.cta-form label{display:block;font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:var(--on-dark-mut);margin-bottom:6px}
+.cta-form input,.cta-form textarea{width:100%;font:inherit;font-size:.92rem;color:var(--on-dark);
+  background:transparent;border:1px solid var(--line-dark);padding:11px 12px;border-radius:0}
+.cta-form textarea{min-height:92px;resize:vertical}
+.cta-form input::placeholder,.cta-form textarea::placeholder{color:var(--on-dark-mut);opacity:.62}
+.cta-form input:focus,.cta-form textarea:focus{outline:none;border-color:var(--muschio)}
+.cta-form .consenso{display:flex;gap:10px;align-items:flex-start;font-size:.78rem;color:var(--on-dark-mut);
+  margin:2px 0 18px;text-transform:none;letter-spacing:0;line-height:1.45}
+.cta-form .consenso input{width:auto;margin-top:3px}
+.cta-form button{width:100%;cursor:pointer;font-family:inherit}
+.cta-form button[disabled]{opacity:.6;cursor:default}
+.cta-form .err{margin:12px 0 0;font-size:.8rem;color:#f0a58f;min-height:1em}
+.cta-form .err a{color:#f0a58f}
+.cta-form .hint{margin:14px 0 0;font-size:.78rem;color:var(--on-dark-mut)}
+.cta-form .hint a{color:var(--on-dark)}
+.cta-form .ok{display:none}
+.cta-form.done form{display:none}
+.cta-form.done .ok{display:block}
+.cta-form .ok p{margin:8px 0 0;font-size:.9rem;color:var(--on-dark-mut)}
 </style>
 </head>
 <body>
@@ -661,18 +689,46 @@ em{font-style:normal;color:var(--rust)}
         <p class="eyebrow">Iniziamo</p>
         <h2 style="margin:14px 0 24px">Il tuo brand è pronto a <em>lavorare da solo?</em></h2>
         <p class="lead">Mezz'ora, senza impegno. Guardiamo insieme cosa produci oggi e dove si perde tempo. Se il sistema non è la risposta giusta per te, te lo dico nella stessa call.</p>
-        <div class="actions"><a class="btn btn-primary" href="mailto:info@alessiogranella.com?subject=AI%20Brand%20System%20%E2%80%94%20prenotiamo%20una%20call">Prenota la call ↗</a></div>
+        <ol class="cta-steps" style="margin-top:32px">
+          <li><b>01</b><span>Mi scrivi e fissiamo mezz'ora.</span></li>
+          <li><b>02</b><span>Guardo il materiale che hai già.</span></li>
+          <li><b>03</b><span>Ti dico cosa si può sistematizzare e cosa no.</span></li>
+          <li><b>04</b><span>Se ha senso, si parte dall'audit.</span></li>
+        </ol>
       </div>
-      <ol class="cta-steps">
-        <li><b>01</b><span>Mi scrivi e fissiamo mezz'ora.</span></li>
-        <li><b>02</b><span>Guardo il materiale che hai già.</span></li>
-        <li><b>03</b><span>Ti dico cosa si può sistematizzare e cosa no.</span></li>
-        <li><b>04</b><span>Se ha senso, si parte dall'audit.</span></li>
-      </ol>
+      <div class="cta-form" id="ctacard">
+        <form id="ctaform" novalidate>
+          <h3>Scrivimi due righe</h3>
+          <p class="sub">Ti rispondo io, entro un giorno lavorativo.</p>
+          <div class="campo">
+            <label for="cta-nome">Nome</label>
+            <input id="cta-nome" name="nome" type="text" autocomplete="name" required>
+          </div>
+          <div class="campo">
+            <label for="cta-email">Email</label>
+            <input id="cta-email" name="email" type="email" autocomplete="email" required>
+          </div>
+          <div class="campo">
+            <label for="cta-messaggio">Di cosa parliamo</label>
+            <textarea id="cta-messaggio" name="messaggio" placeholder="Il link del vostro sito, oppure due righe su cosa producete ogni settimana."></textarea>
+          </div>
+          <label class="consenso" for="cta-privacy">
+            <input id="cta-privacy" name="privacy" type="checkbox">
+            <span>Acconsento a essere ricontattato a questo indirizzo.</span>
+          </label>
+          <button class="btn btn-primary" type="submit">Mandami il messaggio</button>
+          <p class="err" id="ctaerr" role="alert"></p>
+          <p class="hint">Preferisci la tua posta? <a href="mailto:info@alessiogranella.com?subject=AI%20Brand%20System%20%E2%80%94%20prenotiamo%20una%20call">info@alessiogranella.com</a></p>
+        </form>
+        <div class="ok">
+          <h3>Grazie, <span id="ctachi">a presto</span>.</h3>
+          <p>Ho ricevuto il messaggio. Ti rispondo entro un giorno lavorativo, dallo stesso indirizzo: info@alessiogranella.com.</p>
+        </div>
+      </div>
     </div>
     <div class="alt">
       <p>Non è il momento di una call? Mandami il link del tuo sito e ti rispondo con due righe su cosa sistematizzerei per primo. Senza che debba prepararmi niente.</p>
-      <a href="mailto:info@alessiogranella.com?subject=Due%20righe%20sul%20mio%20brand&amp;body=Ciao%20Alessio%2C%20questo%20%C3%A8%20il%20nostro%20sito%3A%20">Mandami il link ↗</a>
+      <a href="#cta-messaggio">Mandami il link ↗</a>
     </div>
   </div>
 </section>
@@ -694,6 +750,53 @@ em{font-style:normal;color:var(--rust)}
 <script>
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}}),{threshold:.08,rootMargin:'0px 0px -40px 0px'});
 document.querySelectorAll('.band .head, .band .prob, .band .levels, .band .map, .band .deliver, .band .ctrl, .band .phases, .band .fit, .band .faq, .band .cases, .cta-grid').forEach(el=>{el.classList.add('reveal');io.observe(el)});
+</script>
+
+<script>
+/* Modulo di contatto → FormSubmit (stesso recapito del whitepaper).
+   La stringa è l'alias cifrato di info@alessiogranella.com: evita di
+   lasciare l'indirizzo in chiaro nel sorgente.
+   NB: l'attivazione FormSubmit è legata all'ORIGINE del sito; se cambia
+   schema o dominio il modulo torna inattivo e va riattivato da email. */
+(function(){
+  var f=document.getElementById('ctaform'); if(!f) return;
+  var card=document.getElementById('ctacard'), err=document.getElementById('ctaerr'),
+      chi=document.getElementById('ctachi'), btn=f.querySelector('button[type=submit]');
+  var ENDPOINT='https://formsubmit.co/ajax/82d4b0859a9cafaadb7850ede7162f20';
+
+  function fallito(){
+    btn.disabled=false; btn.textContent='Mandami il messaggio';
+    err.innerHTML='Non sono riuscito a inviare il messaggio. Scrivimi a '
+      +'<a href="mailto:info@alessiogranella.com">info@alessiogranella.com</a> e ti rispondo.';
+  }
+
+  f.addEventListener('submit',function(e){
+    e.preventDefault(); err.textContent='';
+    var d={nome:f.nome.value.trim(), email:f.email.value.trim(), messaggio:f.messaggio.value.trim()};
+    if(!d.nome){ err.textContent='Come ti chiami?'; return; }
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(d.email)){ err.textContent='Controlla l\u2019indirizzo email.'; return; }
+    if(!f.privacy.checked){ err.textContent='Serve il consenso per poterti rispondere.'; return; }
+    btn.disabled=true; btn.textContent='Invio in corso…';
+    fetch(ENDPOINT,{
+      method:'POST',
+      headers:{'Content-Type':'application/json','Accept':'application/json'},
+      body:JSON.stringify({
+        _subject:'Contatto dalla landing — '+d.nome,
+        _template:'table', _captcha:'false',
+        Nome:d.nome, Email:d.email,
+        Messaggio:d.messaggio||'(nessun messaggio)',
+        Pagina:location.href
+      })
+    })
+    .then(function(r){ return r.json(); })
+    .then(function(esito){
+      /* niente ringraziamento se il messaggio non è partito davvero */
+      if(esito && esito.success==='true'){ chi.textContent=d.nome; card.classList.add('done'); }
+      else { fallito(); }
+    })
+    .catch(fallito);
+  });
+})();
 </script>
 </body>
 </html>
