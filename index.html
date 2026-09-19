@@ -293,6 +293,7 @@ em{font-style:normal;color:var(--rust)}
 /* ── modulo di contatto in fondo alla pagina ─────────────────────────────
    Serve perché il solo mailto: lascia fuori chi non ha un client di posta
    configurato: il link non apre nulla e il contatto si perde in silenzio. */
+#contatto{scroll-margin-top:96px}
 .cta-grid{align-items:start}
 .cta-form{border:1px solid var(--line-dark);padding:26px;background:rgba(255,255,255,.03)}
 .cta-form h3{margin:0 0 4px;font-size:1.15rem;font-weight:400;color:var(--on-dark)}
@@ -330,7 +331,7 @@ em{font-style:normal;color:var(--rust)}
     <div class="nav-right">
       <a class="nav-link" href="#come">Come funziona</a>
       <a class="nav-link" href="#casestudy">Case study</a>
-      <a class="btn btn-primary" href="mailto:info@alessiogranella.com?subject=AI%20Brand%20System%20%E2%80%94%20prenotiamo%20una%20call">Prenota una call</a>
+      <a class="btn btn-primary" href="#contatto">Prenota una call</a>
     </div>
   </div>
 </nav>
@@ -546,7 +547,7 @@ em{font-style:normal;color:var(--rust)}
         </div>
       </article>
     </div>
-    <p class="cases-note">Vuoi vedere il sistema applicato al tuo settore? <a href="mailto:info@alessiogranella.com?subject=AI%20Brand%20System%20%E2%80%94%20prenotiamo%20una%20call">Chiedimelo in call</a>.</p>
+    <p class="cases-note">Vuoi vedere il sistema applicato al tuo settore? <a href="#contatto">Chiedimelo in call</a>.</p>
   </div>
 </section>
 
@@ -797,6 +798,19 @@ document.querySelectorAll('.band .head, .band .prob, .band .levels, .band .map, 
     .catch(fallito);
   });
 })();
+</script>
+
+<script>
+/* le CTA "Prenota una call" portano al modulo: una volta arrivati,
+   il cursore si posiziona nel primo campo */
+document.querySelectorAll('a[href="#contatto"]').forEach(function(a){
+  a.addEventListener('click',function(){
+    setTimeout(function(){
+      var n=document.getElementById('cta-nome');
+      if(n) try{ n.focus({preventScroll:true}); }catch(e){ n.focus(); }
+    },700);
+  });
+});
 </script>
 </body>
 </html>
