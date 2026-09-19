@@ -209,7 +209,7 @@ em{font-style:normal;color:var(--rust)}
         </form>
         <div class="ok" id="ok">
           <h3>Grazie, <span id="chi">a presto</span>.</h3>
-          <p>Il whitepaper si è aperto in una nuova scheda del browser. Se non lo vedi, il tuo browser ha bloccato la finestra: apri il documento dal pulsante qui sotto.</p>
+          <p>Il documento è pronto: si apre in una nuova scheda del browser.</p>
           <a class="btn" id="dl" href="../assets/AI-Brand-System-Whitepaper.pdf" target="_blank" rel="noopener">Apri il whitepaper</a>
           <p class="hint2" id="hint2">Ti ho appena mandato una copia anche per email, così lo ritrovi quando ti serve.</p>
         </div>
@@ -292,7 +292,6 @@ em{font-style:normal;color:var(--rust)}
      prima compilazione fa partire una nuova email di attivazione da cliccare.
      ───────────────────────────────────────────────────────────────────────── */
   var ENDPOINT='https://formsubmit.co/ajax/82d4b0859a9cafaadb7850ede7162f20';
-  var PDF='../assets/AI-Brand-System-Whitepaper.pdf';
   var PDF_PUBBLICO='https://aibrandsystem.alessiogranella.com/assets/AI-Brand-System-Whitepaper.pdf';
 
   function mostraGrazie(nome,consegnato){
@@ -319,10 +318,6 @@ em{font-style:normal;color:var(--rust)}
     if(!form.privacy.checked){ err.textContent='Serve il consenso per mandarti il documento.'; return; }
 
     btn.disabled=true; btn.textContent='Invio in corso…';
-
-    /* il PDF si apre subito, dentro il gesto dell'utente: se lo aprissimo dopo
-       la risposta del server il blocco popup scatterebbe */
-    var scheda=window.open(PDF,'_blank','noopener');
 
     fetch(ENDPOINT,{
       method:'POST',
