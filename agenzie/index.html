@@ -516,6 +516,37 @@ em{font-style:normal;color:var(--rust)}
   </div>
 </section>
 
+<section class="band" id="casestudy" style="background:var(--soft)">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow">La prova</p>
+      <div class="head-copy">
+        <h2>Un progetto reale, dall&#8217;inizio alla fine.</h2>
+        <p class="lead">Prima di proporlo a un vostro cliente, potete leggere per intero come &#232; andata su un progetto vero: l&#8217;audit del materiale esistente, l&#8217;architettura del sistema, il controllo qualit&#224; e gli output finiti.</p>
+      </div>
+    </div>
+    <div class="cases">
+      <article class="case">
+        <div class="case-media">
+          <img src="../assets/case-openeconomics.webp" alt="Il design system OpenEconomics aperto su un portatile">
+        </div>
+        <div class="case-body">
+          <p class="eyebrow">Caso 01 &#183; Analisi economica e advisory</p>
+          <h3>OpenEconomics</h3>
+          <p>Un&#8217;identit&#224; gi&#224; solida, costruita nel tempo, messa in condizione di essere usata dal team marketing in autonomia. Oggi da quel sistema nascono presentazioni, PDF, pagine di sito, report e un video intero prodotto senza software di montaggio. &#200; il tipo di risultato che potete portare ai vostri clienti.</p>
+          <dl class="case-meta">
+            <div><dt>Ruolo</dt><dd>Design direction</dd></div>
+            <div><dt>Output</dt><dd>AI Brand System</dd></div>
+            <div><dt>Stato</dt><dd>In produzione</dd></div>
+          </dl>
+          <a class="btn btn-ghost" href="../case-study/">Leggi il case study &#8599;</a>
+        </div>
+      </article>
+    </div>
+    <p class="cases-note">Il caso si comunica solo con la vostra autorizzazione: quello che facciamo insieme resta riservato finch&#233; non decidete voi. <a href="#contatto">Parliamone</a>.</p>
+  </div>
+</section>
+
 <section class="band dark" id="collaborazione">
   <div class="wrap">
     <div class="head">
@@ -729,7 +760,7 @@ em{font-style:normal;color:var(--rust)}
 
 <script>
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}}),{threshold:.08,rootMargin:'0px 0px -40px 0px'});
-document.querySelectorAll('.band .head, .band .prob, .band .levels, .band .map, .band .deliver, .band .ctrl, .band .phases, .band .fit, .band .faq, .band .cases, .band .porte, .band .fasi5, .band .agenzie, .band .schema, .cta-grid').forEach(el=>{el.classList.add('reveal');io.observe(el)});
+document.querySelectorAll('.band .head, .band .prob, .band .levels, .band .map, .band .deliver, .band .ctrl, .band .phases, .band .fit, .band .faq, .band .cases, .band .porte, .band .fasi5, .band .agenzie, .band .schema, .band .cases, .cta-grid').forEach(el=>{el.classList.add('reveal');io.observe(el)});
 </script>
 
 <script>
