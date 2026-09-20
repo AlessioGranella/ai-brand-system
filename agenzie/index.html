@@ -368,6 +368,22 @@ em{font-style:normal;color:var(--rust)}
 @media(max-width:820px){.agenzie{grid-template-columns:1fr}}
 .hero{min-height:auto}
 .hero-copy{max-width:min(58ch,760px)}
+
+/* schema dei tre ruoli: legenda sotto l'illustrazione, mai sopra
+   (l'immagine non ha zone libere sufficienti a reggere etichette) */
+.schema{margin:38px auto 0;max-width:1000px}
+.schema img{width:100%;height:auto;display:block}
+.schema-lista{display:grid;grid-template-columns:repeat(4,1fr);gap:0;list-style:none;padding:0;
+  margin:30px 0 0;border-top:1px solid var(--line-dark)}
+.schema-lista li{padding:18px 20px 18px 0;border-bottom:1px solid var(--line-dark)}
+.schema-lista li+li{border-left:1px solid var(--line-dark);padding-left:20px}
+.schema-lista b{display:block;font-weight:500;font-size:1rem;color:var(--on-dark);margin-bottom:6px}
+.schema-lista span{display:block;font-size:.88rem;color:var(--on-dark-mut);line-height:1.45}
+.schema-lista li:last-child b{color:#e6552f}
+@media(max-width:860px){.schema-lista{grid-template-columns:repeat(2,1fr)}
+  .schema-lista li:nth-child(odd){border-left:0;padding-left:0}}
+@media(max-width:560px){.schema-lista{grid-template-columns:1fr}
+  .schema-lista li+li{border-left:0;padding-left:0}}
 </style>
 </head>
 <body>
@@ -446,6 +462,27 @@ em{font-style:normal;color:var(--rust)}
         <p>Manutenzione ed evoluzione del sistema generano continuità, al posto delle lavorazioni ripetitive che erodono il margine.</p>
       </article>
     </div>
+  </div>
+</section>
+
+<section class="band dark" id="ruoli">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow">I tre ruoli</p>
+      <div class="head-copy">
+        <h2>Il sistema al centro, tre mestieri intorno.</h2>
+        <p class="lead">Io lo costruisco, voi lo vendete e ne tenete la direzione, il cliente ci produce ogni giorno. Nessuno fa il lavoro dell&#8217;altro, e ognuno si collega al sistema invece che agli altri due.</p>
+      </div>
+    </div>
+    <figure class="schema reveal">
+      <img src="../assets/schema-tre-ruoli.webp" alt="Tre piattaforme isometriche collegate a un sistema centrale: un banco da lavoro, una scrivania con cavalletto e un ufficio con schermi."></span></span></span></span>
+    </figure>
+    <ul class="schema-lista">
+      <li><b>Designer</b><span>Costruisce il sistema e ne cura l&#8217;evoluzione.</span></li>
+      <li><b>Agenzia</b><span>Vende il progetto, tiene la relazione e la direzione creativa.</span></li>
+      <li><b>Cliente</b><span>Produce ogni giorno con gli strumenti che riceve.</span></li>
+      <li><b>Il sistema</b><span>Regole, componenti e criteri: il punto a cui tutti e tre si collegano.</span></li>
+    </ul>
   </div>
 </section>
 
@@ -662,7 +699,7 @@ em{font-style:normal;color:var(--rust)}
 
 <script>
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}}),{threshold:.08,rootMargin:'0px 0px -40px 0px'});
-document.querySelectorAll('.band .head, .band .prob, .band .levels, .band .map, .band .deliver, .band .ctrl, .band .phases, .band .fit, .band .faq, .band .cases, .band .porte, .band .fasi5, .band .agenzie, .cta-grid').forEach(el=>{el.classList.add('reveal');io.observe(el)});
+document.querySelectorAll('.band .head, .band .prob, .band .levels, .band .map, .band .deliver, .band .ctrl, .band .phases, .band .fit, .band .faq, .band .cases, .band .porte, .band .fasi5, .band .agenzie, .band .schema, .cta-grid').forEach(el=>{el.classList.add('reveal');io.observe(el)});
 </script>
 
 <script>
