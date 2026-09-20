@@ -335,6 +335,14 @@ em{font-style:normal;color:var(--rust)}
 .level small,.phase small{display:block;padding-right:88px}
 @media(max-width:720px){.ico{width:52px;height:52px;top:20px;right:20px}
   .level small,.phase small{padding-right:66px}}
+
+/* due punti di partenza: identita esistente oppure da creare */
+.porte{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:36px}
+.porte article{border:1px solid var(--line);background:var(--white);padding:26px}
+.porte small{color:var(--rust);font-size:.76rem;text-transform:uppercase;letter-spacing:.11em}
+.porte h3{margin:14px 0 8px}
+.porte p{font-size:.95rem;color:var(--body);margin:0}
+@media(max-width:720px){.porte{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -612,11 +620,23 @@ em{font-style:normal;color:var(--rust)}
         <p class="lead">Nessuna delle tre ti obbliga alla successiva. Se dopo l'audit decidi di non andare avanti, il documento che hai in mano resta utile lo stesso.</p>
       </div>
     </div>
+    <div class="porte reveal">
+      <article>
+        <small>Punto di partenza 01</small>
+        <h3>L&#8217;identit&#224; esiste gi&#224;</h3>
+        <p>Parto dal materiale che hai: brand book, sito, presentazioni, report. Ne ricavo le regole che gi&#224; segui senza averle scritte, e le trasformo in un sistema che il team pu&#242; usare. &#200; il percorso pi&#249; frequente.</p>
+      </article>
+      <article>
+        <small>Punto di partenza 02</small>
+        <h3>L&#8217;identit&#224; &#232; da creare o rinnovare</h3>
+        <p>Progetto il linguaggio visivo e lo costruisco gi&#224; come sistema operativo. Vale per un nuovo prodotto, uno spin-off o un rebranding: gli strumenti nascono insieme all&#8217;identit&#224;, invece di arrivare anni dopo.</p>
+      </article>
+    </div>
     <div class="phases">
       <article class="phase">
         <img class="ico" src="assets/icona-audit.webp" alt="" aria-hidden="true">
         <small>Fase 01 · Diagnosi</small>
-        <h3>Audit e lettura</h3>
+        <h3>Brand System Audit</h3>
         <p class="when">Due o tre settimane</p>
         <p>Guardo tutto il materiale che hai già e ti dico cosa si può sistematizzare, cosa va rifatto e cosa conviene lasciare com'è.</p>
         <ul><li>Analisi del patrimonio visivo</li><li>Principi ricorrenti resi espliciti</li><li>Roadmap con priorità e tempi</li></ul>
@@ -625,7 +645,7 @@ em{font-style:normal;color:var(--rust)}
       <article class="phase">
         <img class="ico" src="assets/icona-setup.webp" alt="" aria-hidden="true">
         <small>Fase 02 · Costruzione</small>
-        <h3>Setup del sistema</h3>
+        <h3>AI Brand System</h3>
         <p class="when">Da sei a dieci settimane</p>
         <p>Costruisco la libreria da cui parte tutto e le istruzioni che l'intelligenza artificiale legge prima di produrre, così lavora dentro le tue regole.</p>
         <ul><li>Le decisioni di base, i pezzi, le pagine</li><li>Libreria consultabile e versionata</li><li>Contesto e regole per l'AI</li><li>Rubrica di valutazione</li></ul>
@@ -634,7 +654,7 @@ em{font-style:normal;color:var(--rust)}
       <article class="phase key">
         <img class="ico" src="assets/icona-evoluzione.webp" alt="" aria-hidden="true">
         <small>Fase 03 · Continuità</small>
-        <h3>Gestione e evoluzione</h3>
+        <h3>System Evolution</h3>
         <p class="when">Canone mensile</p>
         <p>Un sistema fermo invecchia. Ogni mese entrano formati nuovi, l'archivio delle scelte si aggiorna e la produzione del team resta sotto controllo.</p>
         <ul><li>Nuovi componenti e template</li><li>Controllo qualità sugli output</li><li>Aggiornamento dell'archivio</li><li>Affiancamento al team</li></ul>
