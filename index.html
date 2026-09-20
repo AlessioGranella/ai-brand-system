@@ -343,6 +343,17 @@ em{font-style:normal;color:var(--rust)}
 .porte h3{margin:14px 0 8px}
 .porte p{font-size:.95rem;color:var(--body);margin:0}
 @media(max-width:720px){.porte{grid-template-columns:1fr}}
+
+/* le cinque fasi del metodo, in riga sotto lo schema del motore */
+.fasi5{display:grid;grid-template-columns:repeat(5,1fr);gap:0;margin-top:34px;border-top:1px solid var(--line)}
+.fasi5 div{padding:18px 18px 18px 0;border-bottom:1px solid var(--line)}
+.fasi5 div+div{border-left:1px solid var(--line);padding-left:18px}
+.fasi5 b{display:block;color:var(--rust);font-size:.72rem;text-transform:uppercase;letter-spacing:.12em;margin-bottom:8px}
+.fasi5 span{display:block;font-size:.95rem;color:var(--ink)}
+.fasi5 em{display:block;font-style:normal;font-size:.85rem;color:var(--muted);margin-top:4px}
+@media(max-width:1000px){.fasi5{grid-template-columns:repeat(2,1fr)}
+  .fasi5 div+div{border-left:0;padding-left:0}}
+@media(max-width:620px){.fasi5{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -620,6 +631,13 @@ em{font-style:normal;color:var(--rust)}
         <p class="lead">Nessuna delle tre ti obbliga alla successiva. Se dopo l'audit decidi di non andare avanti, il documento che hai in mano resta utile lo stesso.</p>
       </div>
     </div>
+    <div class="fasi5 reveal">
+      <div><b>Fase 01</b><span>Audit</span><em>raccogliere</em></div>
+      <div><b>Fase 02</b><span>Lettura</span><em>comprendere</em></div>
+      <div><b>Fase 03</b><span>Codifica</span><em>codificare</em></div>
+      <div><b>Fase 04</b><span>Attivazione</span><em>attivare</em></div>
+      <div><b>Fase 05</b><span>Formazione</span><em>trasferire</em></div>
+    </div>
     <div class="porte reveal">
       <article>
         <small>Punto di partenza 01</small>
@@ -648,7 +666,7 @@ em{font-style:normal;color:var(--rust)}
         <h3>AI Brand System</h3>
         <p class="when">Da sei a dieci settimane</p>
         <p>Costruisco la libreria da cui parte tutto e le istruzioni che l'intelligenza artificiale legge prima di produrre, così lavora dentro le tue regole.</p>
-        <ul><li>Le decisioni di base, i pezzi, le pagine</li><li>Libreria consultabile e versionata</li><li>Contesto e regole per l'AI</li><li>Rubrica di valutazione</li></ul>
+        <ul><li>Le decisioni di base, i pezzi, le pagine</li><li>Libreria consultabile e versionata</li><li>Contesto e regole per l'AI</li><li>Rubrica di valutazione</li><li>Formazione del team</li></ul>
         <p class="need"><b>Cosa serve da te</b>Una persona di riferimento e circa un'ora a settimana per le revisioni.</p>
       </article>
       <article class="phase key">
