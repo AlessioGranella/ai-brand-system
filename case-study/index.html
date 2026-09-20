@@ -107,7 +107,12 @@
 .step,.layer,.control-grid article,.offer-card{position:relative;min-width:0}
 .cs-ico{position:absolute;top:18px;right:18px;width:62px;height:62px;display:block}
 .step h3,.layer h3,.control-grid article h3,.offer-card h3{padding-right:86px}
-.step small,.control-grid article small,.offer-card small{display:block;padding-right:86px}
+.control-grid article small,.offer-card small{display:block;padding-right:86px}
+/* le colonne dei cinque passi sono strette: icona piu piccola, e l'etichetta
+   tiene un'altezza fissa perche i titoli restino allineati fra le schede */
+.step .cs-ico{width:46px;height:46px;top:16px;right:16px}
+.step small{display:block;padding-right:66px;min-height:3.3em}
+.step h3{padding-right:0}
 @media(max-width:900px){.cs-ico{width:52px;height:52px;top:14px;right:14px}
   .step h3,.layer h3,.control-grid article h3,.offer-card h3{padding-right:74px}
   .step small,.control-grid article small,.offer-card small{padding-right:74px}}
