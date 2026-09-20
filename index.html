@@ -327,6 +327,14 @@ em{font-style:normal;color:var(--rust)}
 .cta-form.done form{display:none}
 .cta-form.done .ok{display:block}
 .cta-form .ok p{margin:8px 0 0;font-size:.9rem;color:var(--on-dark-mut)}
+
+/* icone 3D nelle schede: usano lo spazio gia libero in alto a destra */
+.level,.phase{position:relative}
+.ico{position:absolute;top:22px;right:22px;width:74px;height:74px;display:block}
+/* l'etichetta non deve arrivare sotto l'icona quando le colonne si stringono */
+.level small,.phase small{display:block;padding-right:88px}
+@media(max-width:720px){.ico{width:52px;height:52px;top:20px;right:20px}
+  .level small,.phase small{padding-right:66px}}
 </style>
 </head>
 <body>
@@ -461,18 +469,21 @@ em{font-style:normal;color:var(--rust)}
     </div>
     <div class="levels">
       <article class="level">
+        <img class="ico" src="assets/icona-valori.webp" alt="" aria-hidden="true">
         <small>Livello 01</small>
         <h3>Le decisioni di base</h3>
         <p class="en">Foundations</p>
         <ul><li>Colori e scale tonali</li><li>Tipografia e gerarchie</li><li>Spaziature e griglie</li><li>Icone e grafici</li></ul>
       </article>
       <article class="level">
+        <img class="ico" src="assets/icona-componenti.webp" alt="" aria-hidden="true">
         <small>Livello 02</small>
         <h3>I pezzi riutilizzabili</h3>
         <p class="en">Components</p>
         <ul><li>Pulsanti, tag, schede</li><li>Tabelle e numeri</li><li>Moduli e campi</li><li>Navigazione e footer</li></ul>
       </article>
       <article class="level">
+        <img class="ico" src="assets/icona-pagine.webp" alt="" aria-hidden="true">
         <small>Livello 03</small>
         <h3>Le pagine già montate</h3>
         <p class="en">UI Blocks</p>
@@ -603,6 +614,7 @@ em{font-style:normal;color:var(--rust)}
     </div>
     <div class="phases">
       <article class="phase">
+        <img class="ico" src="assets/icona-audit.webp" alt="" aria-hidden="true">
         <small>Fase 01 · Diagnosi</small>
         <h3>Audit e lettura</h3>
         <p class="when">Due o tre settimane</p>
@@ -611,6 +623,7 @@ em{font-style:normal;color:var(--rust)}
         <p class="need"><b>Cosa serve da te</b>L'accesso ai file e due ore di chi conosce il brand meglio di tutti.</p>
       </article>
       <article class="phase">
+        <img class="ico" src="assets/icona-setup.webp" alt="" aria-hidden="true">
         <small>Fase 02 · Costruzione</small>
         <h3>Setup del sistema</h3>
         <p class="when">Da sei a dieci settimane</p>
@@ -619,6 +632,7 @@ em{font-style:normal;color:var(--rust)}
         <p class="need"><b>Cosa serve da te</b>Una persona di riferimento e circa un'ora a settimana per le revisioni.</p>
       </article>
       <article class="phase key">
+        <img class="ico" src="assets/icona-evoluzione.webp" alt="" aria-hidden="true">
         <small>Fase 03 · Continuità</small>
         <h3>Gestione e evoluzione</h3>
         <p class="when">Canone mensile</p>
