@@ -36,6 +36,7 @@
    il link non apre nulla e il contatto si perde in silenzio. */
 #contact{scroll-margin-top:96px}
 .cta-row{align-items:flex-start}
+.solo-stampa{display:none}
 .cta-form{flex:0 0 370px;border:1px solid var(--line);background:var(--white);padding:26px}
 .cta-form h3{margin:0 0 4px;font-size:1.15rem;font-weight:400;color:var(--ink)}
 .cta-form .sub{margin:0 0 18px;font-size:.85rem;color:var(--muted)}
@@ -60,6 +61,45 @@
 .cta-form.done .ok{display:block}
 .cta-form .ok p{margin:8px 0 0;font-size:.9rem;color:var(--muted)}
 @media(max-width:860px){.cta-form{flex:1 1 auto;width:100%}}
+
+    @media print{
+      @page{size:A4;margin:12mm 10mm}
+      *{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
+      html,body{background:#fff}
+      /* le sezioni compaiono allo scorrimento: in stampa vanno forzate visibili */
+      .reveal{opacity:1!important;transform:none!important;transition:none!important}
+      /* la barra in alto non deve galleggiare né ripetersi */
+      .nav{position:static!important;backdrop-filter:none}
+      .nav-links{display:none}
+      /* niente animazioni sui grafici */
+      .engine:before,.engine:after,.flow-network .pulse path{animation:none!important}
+      /* non spezzare gli elementi a metà */
+      .step,.layer,.shot,.lab-card,.offer-card,.result,.faq-row,.platform-item,
+      .map-card,.analysis-row,.control-grid article,.story-proof article,
+      .story-frame,.platform-visual,.photo-stage{break-inside:avoid;page-break-inside:avoid}
+      /* un titolo non resta orfano in fondo alla pagina, ne si spezza a meta */
+      h1,h2,h3,.section-head{break-after:avoid;page-break-after:avoid}
+      h1,h2,h3{break-inside:avoid;page-break-inside:avoid}
+      /* le altezze minime servono allo schermo: su carta sprecano pagine e
+         lasciano i titoli soli, perche la griglia sotto non entra piu */
+      .step,.layer,.control-grid article,.story-frame,.result{min-height:0}
+      /* la copertina tiene la sua pagina */
+      .hero{break-after:page;page-break-after:always}
+      /* la foto a piena larghezza non entrava sotto il testo d'apertura e
+         slittava, lasciando una pagina quasi bianca: qui viene contenuta */
+      .photo-stage img{max-height:510px;width:auto;max-width:100%;margin-inline:auto}
+      .step{padding-bottom:20px}
+      .step h3{margin:20px 0 10px}
+      .section-head{margin-bottom:26px}
+      .intro,.process,.architecture,.gallery,.analysis,.component-lab,.system-map,
+      .control,.storyboard,.web-platform,.results,.offer,.faq,.cta{padding-block:16mm}
+      /* su carta un modulo da compilare non serve: al suo posto i recapiti */
+      .cta-form{display:none}
+      .solo-stampa{display:block!important}
+      /* i link su carta non servono sottolineati */
+      a{text-decoration:none}
+      .quote{break-inside:avoid}
+    }
 </style>
 </head>
 <body>
@@ -124,6 +164,7 @@
   <div>
     <p>Si parte da una chiamata di trenta minuti: guardo il materiale che hai già e ti dico che cosa è sistematizzabile — e che cosa, onestamente, non lo è. Se ha senso andare avanti, il primo passo è l’audit.</p>
     <div class="cta-actions"><a href="#offerta">Rivedi le tre fasi</a></div>
+    <p class="solo-stampa">Scrivimi a <b>info@alessiogranella.com</b> &#183; alessiogranella.com</p>
   </div>
   <div class="cta-form" id="ctacard">
     <form id="ctaform" novalidate>
