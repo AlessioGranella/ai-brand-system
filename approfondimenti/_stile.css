@@ -1,0 +1,105 @@
+@font-face{font-family:Augustina;src:url('/assets/fonts/AugustinaSlab-Light.otf') format('opentype');font-weight:300;font-style:normal;font-display:swap}
+@font-face{font-family:Augustina;src:url('/assets/fonts/AugustinaSlab-Regular.otf') format('opentype');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:Augustina;src:url('/assets/fonts/AugustinaSlab-Medium.otf') format('opentype');font-weight:500;font-style:normal;font-display:swap}
+@font-face{font-family:Augustina;src:url('/assets/fonts/AugustinaSlab-Italic.otf') format('opentype');font-weight:400;font-style:italic;font-display:swap}
+
+:root{
+  --paper:#f0efee; --soft:#dfdad5; --white:#fff;
+  --ink:#1a2b1e; --verde:#243728; --rust:#d14124; --muschio:#8faf90;
+  --line:#c8c6c2; --line-dark:#485349; --muted:#5d6a60; --body:#344238;
+  --on-dark:#e4e8e4; --on-dark-mut:#adb8ae;
+  --max:1120px; --gut:32px;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:Augustina,Georgia,serif;
+  font-size:18px;line-height:1.55;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit}
+h1,h2,h3,p,ul,ol{margin-top:0}
+h1,h2,h3{font-weight:300;letter-spacing:-.035em;text-wrap:balance}
+.wrap{max-width:var(--max);margin-inline:auto;padding-inline:var(--gut)}
+.eyebrow{color:var(--rust);font-size:.72rem;font-weight:500;text-transform:uppercase;
+  letter-spacing:.15em;margin-bottom:0}
+
+/* barra in alto */
+.nav{background:var(--ink);color:var(--on-dark);position:sticky;top:0;z-index:20}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:84px;gap:20px}
+.brand{display:flex;align-items:center;gap:13px;text-decoration:none;color:inherit;min-width:0}
+.brand img{width:54px;height:auto;flex:0 0 auto}
+.brand b{display:block;font-weight:500;font-size:1.05rem;letter-spacing:-.01em;line-height:1.1}
+.brand small{display:block;font-size:.72rem;color:var(--on-dark-mut);letter-spacing:.04em}
+.nav-sez{font-size:.74rem;text-transform:uppercase;letter-spacing:.16em;color:var(--muschio);
+  text-decoration:none;white-space:nowrap}
+
+/* testata dell'indice */
+.testa{background:var(--ink);color:var(--on-dark);padding-block:clamp(58px,8vw,104px)}
+.testa h1{font-size:clamp(2.6rem,6vw,5rem);line-height:.96;margin:16px 0 0;color:var(--on-dark)}
+.testa .lead{margin:24px 0 0;max-width:52ch;color:var(--on-dark-mut);font-size:1.06rem;line-height:1.55}
+.testa .eyebrow{color:var(--muschio)}
+
+/* elenco articoli */
+.lista{padding-block:clamp(54px,7vw,92px)}
+.pezzo{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:38px;
+  align-items:center;text-decoration:none;color:inherit;padding-bottom:clamp(44px,5vw,64px)}
+.pezzo+.pezzo{border-top:1px solid var(--line);padding-top:clamp(44px,5vw,64px)}
+.pezzo-img{order:2;margin:0;background:var(--soft);border:1px solid var(--line);min-width:0}
+.pezzo-img img{width:100%;height:auto}
+.pezzo-txt{order:1;min-width:0}
+.pezzo-meta{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 14px;margin-bottom:14px}
+.pezzo-meta .tag{color:var(--rust);font-size:.7rem;font-weight:500;text-transform:uppercase;letter-spacing:.15em}
+.pezzo-meta time,.pezzo-meta .durata{font-size:.78rem;color:var(--muted);letter-spacing:.02em}
+.pezzo h2{font-size:clamp(1.75rem,3vw,2.6rem);line-height:1.06;margin:0}
+.pezzo p{margin:16px 0 0;color:var(--body);font-size:1rem;line-height:1.58;max-width:46ch}
+.pezzo .vai{display:inline-block;margin-top:22px;font-size:.74rem;text-transform:uppercase;
+  letter-spacing:.14em;color:var(--rust);border-bottom:1px solid currentColor;padding-bottom:3px}
+.pezzo:hover h2{color:var(--verde)}
+.pezzo:hover .pezzo-img{border-color:var(--muschio)}
+
+/* articolo */
+.art-testa{background:var(--ink);color:var(--on-dark);padding-block:clamp(50px,7vw,86px) clamp(40px,5vw,62px)}
+.art-testa .wrap{max-width:860px}
+.art-testa h1{font-size:clamp(2.2rem,4.6vw,3.7rem);line-height:1.03;margin:18px 0 0;color:var(--on-dark)}
+.art-testa .occhiello{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:baseline}
+.art-testa .tag{color:var(--muschio);font-size:.7rem;font-weight:500;text-transform:uppercase;letter-spacing:.15em}
+.art-testa time,.art-testa .durata{font-size:.78rem;color:var(--on-dark-mut)}
+.art-testa .somm{margin:26px 0 0;font-size:1.14rem;line-height:1.5;color:var(--on-dark-mut);max-width:44ch}
+.art-cover{background:var(--ink)}
+.art-cover .wrap{max-width:1000px;padding-bottom:clamp(40px,5vw,64px)}
+.art-cover img{width:100%;height:auto}
+.art-corpo{padding-block:clamp(52px,6vw,84px)}
+.art-corpo .wrap{max-width:720px}
+.art-corpo p{font-size:1.06rem;line-height:1.72;color:var(--body);margin:0 0 1.35em;max-width:38em}
+.art-corpo h2{font-size:clamp(1.5rem,2.6vw,2.05rem);line-height:1.14;font-weight:400;
+  margin:2.4em 0 .7em;letter-spacing:-.025em;color:var(--ink)}
+.art-corpo h2:first-child{margin-top:0}
+.art-corpo strong{font-weight:500;color:var(--ink)}
+.art-corpo em{font-style:italic}
+.art-corpo a{color:var(--rust);text-decoration:none;border-bottom:1px solid rgba(209,65,36,.42)}
+.art-corpo a:hover{border-bottom-color:var(--rust)}
+.art-fine{margin-top:clamp(46px,5vw,70px);border-top:1px solid var(--line);padding-top:30px}
+.art-fine p{font-size:.95rem;color:var(--muted);margin:0 0 1em;max-width:40em}
+.art-fine a{color:var(--rust);text-decoration:none;border-bottom:1px solid rgba(209,65,36,.42)}
+.indietro{display:inline-block;margin-top:14px;font-size:.74rem;text-transform:uppercase;
+  letter-spacing:.14em;color:var(--muted);text-decoration:none}
+.indietro:hover{color:var(--ink)}
+
+/* piede */
+.foot{background:var(--ink);color:var(--on-dark-mut);padding-block:46px;font-size:.86rem}
+.foot .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:20px}
+.foot img{width:132px;height:auto}
+.foot .payoff{font-style:italic;color:var(--muschio)}
+.foot nav{display:flex;flex-wrap:wrap;gap:22px}
+.foot a{text-decoration:none}
+.foot a:hover{color:var(--on-dark)}
+
+@media(max-width:860px){
+  :root{--gut:22px}
+  body{font-size:17px}
+  .nav .wrap{height:72px}
+  .brand img{width:46px}
+  .brand small{display:none}
+  .pezzo{grid-template-columns:1fr;gap:22px}
+  .pezzo-img{order:1}
+  .pezzo-txt{order:2}
+  .foot .wrap{flex-direction:column;align-items:flex-start}
+}
