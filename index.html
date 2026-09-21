@@ -375,32 +375,9 @@ em{font-style:normal;color:var(--rust)}
 .prova-txt b{color:var(--on-dark);font-weight:400}
 .prova-in .btn{white-space:nowrap}
 
-/* esempio approvato / scartato */
-.giudizio{margin-top:clamp(46px,5vw,72px);border-top:1px solid var(--line-dark);padding-top:clamp(30px,3.4vw,44px)}
-.giudizio-int{margin:0 0 26px;color:var(--on-dark)!important;font-size:clamp(1.1rem,1.5vw,1.32rem);font-weight:300;letter-spacing:-.02em;max-width:40ch}
-.gz-coppia{display:grid;grid-template-columns:1fr 1fr;gap:26px}
-.gz{margin:0;min-width:0}
-.gz-demo{background:var(--white);border:1px solid var(--line);padding:30px 28px;min-height:186px;display:flex;align-items:center}
-.gz-verdetto{display:flex;align-items:baseline;gap:10px;margin:18px 0 8px}
-.gz-verdetto b{font-size:.74rem;font-weight:500;text-transform:uppercase;letter-spacing:.14em}
-.gz-no .gz-verdetto b{color:#e07a5f}
-.gz-si .gz-verdetto b{color:var(--muschio)}
-.gz-verdetto span{font-size:.74rem;color:var(--on-dark-mut);letter-spacing:.02em}
-.gz p{margin:0;font-size:.93rem;line-height:1.55;color:var(--on-dark-mut)}
-.giudizio-nota{margin:26px 0 0;font-size:.86rem;line-height:1.55;color:var(--on-dark-mut);max-width:62ch;opacity:.82}
-/* il finto documento dentro le due schede */
-.dm{width:100%}
-.dm-no .e{display:block;font-size:1.02rem;color:#2b2b2b;margin-bottom:7px}
-.dm-no .n{display:block;font-size:1.02rem;color:#2b2b2b;margin-bottom:11px}
-.dm-no .s{display:block;font-size:.95rem;color:#c2c2c2}
-.dm-si .e{display:block;font-size:.7rem;font-weight:500;text-transform:uppercase;letter-spacing:.14em;color:#5d6a60;margin-bottom:12px}
-.dm-si .n{display:block;font-size:2.7rem;line-height:1;font-weight:300;letter-spacing:-.04em;color:var(--ink);margin-bottom:12px}
-.dm-si .s{display:block;font-size:.85rem;color:#344238;border-top:1px solid var(--line);padding-top:10px}
 @media(max-width:860px){
   .prova-in{grid-template-columns:1fr;gap:12px}
   .prova-in .btn{justify-self:start}
-  .gz-coppia{grid-template-columns:1fr;gap:22px}
-  .gz-demo{min-height:0;padding:24px 22px}
 }
 </style>
 </head>
@@ -678,35 +655,6 @@ em{font-style:normal;color:var(--rust)}
         <p>Gli esempi approvati e quelli buttati vengono conservati insieme al motivo. È così che il sistema impara a distinguere quello che è corretto da quello che è buono.</p>
       </article>
     </div>
-
-    <div class="giudizio">
-      <p class="giudizio-int">Una scheda dell'archivio, come viene conservata.</p>
-      <div class="gz-coppia">
-        <figure class="gz gz-no">
-          <div class="gz-demo">
-            <div class="dm dm-no">
-              <span class="e">Valore aggiunto annuo sul territorio</span>
-              <span class="n">48,2 milioni di euro</span>
-              <span class="s">stima su dodici mesi, fonte interna</span>
-            </div>
-          </div>
-          <div class="gz-verdetto"><b>Scartato</b><span>secondo livello · gerarchia e leggibilità</span></div>
-          <p>Etichetta e numero hanno lo stesso corpo e lo stesso peso: l'occhio non sa cosa leggere per primo. La riga di fonte è troppo chiara per il fondo bianco e non raggiunge il contrasto minimo che abbiamo fissato. Le tre spaziature sono diverse fra loro e nessuna viene dalla scala.</p>
-        </figure>
-        <figure class="gz gz-si">
-          <div class="gz-demo">
-            <div class="dm dm-si">
-              <span class="e">Valore aggiunto annuo</span>
-              <span class="n">48,2 mln €</span>
-              <span class="s">Stima su dodici mesi · fonte interna</span>
-            </div>
-          </div>
-          <div class="gz-verdetto"><b>Approvato</b><span>entra nel contesto come esempio corretto</span></div>
-          <p>Il dato arriva per primo, l'etichetta lo qualifica, la fonte chiude e resta leggibile. Le tre distanze escono dalla stessa scala. Da qui in avanti ogni scheda dato che il team o l'AI producono parte da questa, senza doverla ridiscutere.</p>
-        </figure>
-      </div>
-      <p class="giudizio-nota">Questo esempio è costruito per la pagina. Nell'archivio vero ogni scheda porta la data, chi ha deciso, il progetto in cui è successo e il criterio che ha fatto scattare la bocciatura — ed è quello che l'intelligenza artificiale legge prima di produrre.</p>
-    </div>
   </div>
 </section>
 
@@ -936,7 +884,7 @@ em{font-style:normal;color:var(--rust)}
 
 <script>
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}}),{threshold:.08,rootMargin:'0px 0px -40px 0px'});
-document.querySelectorAll('.band .head, .band .prob, .band .levels, .band .map, .band .deliver, .band .ctrl, .band .phases, .band .fit, .band .faq, .band .cases, .band .porte, .band .fasi5, .band .agenzie, .band .giudizio, .prova-in, .cta-grid').forEach(el=>{el.classList.add('reveal');io.observe(el)});
+document.querySelectorAll('.band .head, .band .prob, .band .levels, .band .map, .band .deliver, .band .ctrl, .band .phases, .band .fit, .band .faq, .band .cases, .band .porte, .band .fasi5, .band .agenzie, .prova-in, .cta-grid').forEach(el=>{el.classList.add('reveal');io.observe(el)});
 </script>
 
 <script>
