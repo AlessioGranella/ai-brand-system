@@ -83,14 +83,14 @@ h1,h2,h3{font-weight:300;letter-spacing:-.035em;text-wrap:balance}
   letter-spacing:.14em;color:var(--muted);text-decoration:none}
 .indietro:hover{color:var(--ink)}
 
-/* piede */
-.foot{background:var(--ink);color:var(--on-dark-mut);padding-block:46px;font-size:.86rem}
-.foot .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:20px}
-.foot img{width:132px;height:auto}
-.foot .payoff{font-style:italic;color:var(--muschio)}
-.foot nav{display:flex;flex-wrap:wrap;gap:22px}
-.foot a{text-decoration:none}
-.foot a:hover{color:var(--on-dark)}
+/* piede — identico a quello delle landing */
+.foot{padding-block:40px 54px;border-top:1px solid var(--line)}
+.foot .wrap{display:flex;flex-wrap:wrap;gap:24px 40px;justify-content:space-between;align-items:center}
+.foot img{width:74px;height:auto}
+.foot .payoff{font-style:italic;color:var(--muted)}
+.foot nav{display:flex;flex-wrap:wrap;gap:22px;font-size:.8rem;text-transform:uppercase;letter-spacing:.09em}
+.foot a{text-decoration:none;border-bottom:1px solid transparent;padding-bottom:2px}
+.foot a:hover{border-color:currentColor}
 
 @media(max-width:860px){
   :root{--gut:22px}
@@ -101,5 +101,4 @@ h1,h2,h3{font-weight:300;letter-spacing:-.035em;text-wrap:balance}
   .pezzo{grid-template-columns:1fr;gap:22px}
   .pezzo-img{order:1}
   .pezzo-txt{order:2}
-  .foot .wrap{flex-direction:column;align-items:flex-start}
 }
